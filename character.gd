@@ -1,16 +1,17 @@
 class_name Character extends CharacterBody2D
 
-@onready var rayCast = $RayCast2D
-@onready var animationPlayer = $AnimationPlayer
-@onready var sprite2D = $Sprite2D
+const DIST = 16
+const SPEED = 64
+const JUMP = -200
 
 var target_x = 0
 var moving = true
-var DIST = 16
-var SPEED = 64
-var JUMP = -200
 var drag_pos = Vector2(0, 0)
 var joystick = Vector2(0, 0)
+
+@onready var ray_cast = $RayCast2D
+@onready var animation_player = $AnimationPlayer
+@onready var sprite_2d = $Sprite2D
 
 
 func _ready() -> void:
@@ -26,7 +27,7 @@ func _physics_process(delta: float) -> void:
         set_target(0)
 
     if not is_on_floor():
-        animationPlayer.play("jump")
+        animation_player.play("jump")
     velocity += get_gravity() * delta
     move_and_slide()
 
@@ -52,16 +53,23 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func set_target(dir):
     if dir < 0:
-        sprite2D.flip_h = false
+        sprite_2d.flip_h = false
     if dir > 0:
-        sprite2D.flip_h = true
+        sprite_2d.flip_h = true
     if dir != 0:
-        animationPlayer.play("walk")
+        animation_player.play("walk")
     else:
-        animationPlayer.play("idle")
+        animation_player.play("idle")
     velocity.x = dir * SPEED
     if dir != 0:
-        rayCast.target_position.x = abs(rayCast.target_position.x) * dir
-        rayCast.force_raycast_update()
-        if is_on_floor() and is_on_wall() and rayCast.is_colliding():
-            velocity.y += JUMP
+        # If walking into a wall, jump
+        ray_cast.target_position.x = abs(ray_cast.target_position.x) * dir
+        ray_cast.force_raycast_update()
+        if is_on_floor() and is_on_wall() and ray_cast.is_colliding():
+            jump()
+
+
+func jump() -> void:
+    if is_on_floor():
+        velocity.y += JUMP
+

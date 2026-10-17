@@ -1,7 +1,8 @@
 class_name Water extends CharacterBody2D
 
+const MAX_SPEED = 100
+
 var spawn_position = Vector2.ZERO
-var MAX_SPEED = 100
 func _ready() -> void:
 	spawn_position = position
 

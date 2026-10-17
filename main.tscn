@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d2t8ml5p1aj40" path="res://images/blue_blob.png" id="3_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://b4q2m2vuphiv6" path="res://images/Sharing my pixel art.png" id="4_1bvp3"]
 [ext_resource type="Script" uid="uid://bccteo5bvpt2x" path="res://drop.gd" id="5_7mycd"]
+[ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://touch_button.tscn" id="6_touch_btn"]
+[ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="7_arrow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_0xm2m")
@@ -412,7 +414,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_272bh"]
 resource_name = "idle"
-length = 0.666683353202045
+length = 0.6666834
 loop_mode = 1
 step = 0.16666667
 tracks/0/type = "value"
@@ -430,7 +432,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_5vw27"]
 resource_name = "jump"
-length = 0.16668333830088378
+length = 0.16668333
 step = 0.16666667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -447,7 +449,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_kek77"]
 resource_name = "walk"
-length = 0.666683353202045
+length = 0.6666834
 loop_mode = 1
 step = 0.16666667
 tracks/0/type = "value"
@@ -471,13 +473,6 @@ _data = {
 &"walk": SubResource("Animation_kek77")
 }
 
-[sub_resource type="AnimatedTexture" id="AnimatedTexture_lquwl"]
-frames = 4
-frame_0/texture = ExtResource("3_1bvp3")
-frame_1/duration = 1.0
-frame_2/duration = 1.0
-frame_3/duration = 1.0
-
 [sub_resource type="Animation" id="Animation_4c57u"]
 length = 0.001
 tracks/0/type = "value"
@@ -495,7 +490,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_efxa6"]
 resource_name = "swim"
-length = 1.3333500397369265
+length = 1.3333501
 loop_mode = 1
 step = 0.16666667
 tracks/0/type = "value"
@@ -549,7 +544,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_1bvp3"]
 resource_name = "move"
-length = 3.0000000000000004
+length = 3.0
 loop_mode = 2
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -590,8 +585,6 @@ size = Vector2(7, 6)
 
 [node name="Node2D" type="Node2D" unique_id=273070885]
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=401366186]
-
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1786442005]
 tile_map_data = PackedByteArray("AAAKAAUAAAACAAIAAAAKAAQAAAACAAEAAAAKAAMAAAACAAEAAAAKAAIAAAACAAEAAAAKAAEAAAACAAEAAAAKAAAAAAACAAEAAAAKAP//AAACAAEAAAAKAP7/AAACAAEAAAAKAP3/AAACAAEAAAAKAPz/AAACAAEAAAAKAPv/AAACAAEAAAAKAPr/AAACAAAAAAAJAAUAAAABAAIAAAAJAAQAAAABAAEAAAAJAAMAAAABAAEAAAAJAAIAAAABAAEAAAAJAAEAAAABAAEAAAAJAAAAAAABAAEAAAAJAP//AAABAAEAAAAJAP7/AAABAAEAAAAJAP3/AAABAAEAAAAJAPz/AAABAAEAAAAJAPv/AAABAAEAAAAJAPr/AAABAAAAAAAIAAUAAAABAAIAAAAIAAQAAAABAAEAAAAIAAMAAAAFAAEAAAAIAAIAAAAAAAEAAAAIAAEAAAAAAAEAAAAIAAAAAAAAAAEAAAAIAP//AAAAAAEAAAAIAP7/AAAAAAEAAAAIAP3/AAAFAAAAAAAIAPz/AAABAAEAAAAIAPv/AAABAAEAAAAIAPr/AAABAAAAAAAHAAUAAAABAAIAAAAHAAQAAAABAAEAAAAHAAMAAAABAAAAAAAHAP3/AAABAAIAAAAHAPz/AAABAAEAAAAHAPv/AAABAAEAAAAHAPr/AAABAAAAAAAGAAUAAAABAAIAAAAGAAQAAAABAAEAAAAGAAMAAAABAAAAAAAGAP3/AAABAAIAAAAGAPz/AAABAAEAAAAGAPv/AAABAAEAAAAGAPr/AAABAAAAAAAFAAUAAAABAAIAAAAFAAQAAAABAAEAAAAFAAMAAAABAAAAAAAFAP3/AAABAAIAAAAFAPz/AAABAAEAAAAFAPv/AAABAAEAAAAFAPr/AAABAAAAAAAEAAUAAAABAAIAAAAEAAQAAAABAAEAAAAEAAMAAAABAAAAAAAEAP3/AAABAAIAAAAEAPz/AAABAAEAAAAEAPv/AAABAAEAAAAEAPr/AAABAAAAAAADAAUAAAABAAIAAAADAAQAAAABAAEAAAADAAMAAAABAAAAAAADAP3/AAABAAIAAAADAPz/AAABAAEAAAADAPv/AAABAAEAAAADAPr/AAABAAAAAAACAAUAAAABAAIAAAACAAQAAAABAAEAAAACAAMAAAABAAAAAAACAP3/AAAAAAIAAAACAPz/AAAAAAEAAAACAPv/AAAAAAEAAAACAPr/AAADAAQAAAABAAUAAAABAAIAAAABAAQAAAABAAEAAAABAAMAAAABAAAAAAABAPr/AAABAAMAAAAAAAUAAAABAAIAAAAAAAQAAAABAAEAAAAAAAMAAAABAAAAAAAAAP3/AAACAAIAAAAAAPz/AAACAAEAAAAAAPv/AAACAAEAAAAAAPr/AAACAAQAAAD//wUAAAABAAIAAAD//wQAAAABAAEAAAD//wMAAAAEAAEAAAD///3/AAABAAIAAAD///z/AAABAAEAAAD///v/AAABAAEAAAD///r/AAABAAAAAAD+/wUAAAABAAIAAAD+/wQAAAABAAEAAAD+/wMAAAABAAEAAAD+//3/AAABAAIAAAD+//z/AAABAAEAAAD+//v/AAABAAEAAAD+//r/AAABAAAAAAD9/wUAAAABAAIAAAD9/wQAAAABAAEAAAD9/wMAAAABAAEAAAD9//3/AAABAAIAAAD9//z/AAABAAEAAAD9//v/AAABAAEAAAD9//r/AAABAAAAAAD8/wUAAAABAAIAAAD8/wQAAAABAAEAAAD8/wMAAAABAAEAAAD8//3/AAABAAIAAAD8//z/AAABAAEAAAD8//v/AAABAAEAAAD8//r/AAABAAAAAAD7/wUAAAABAAIAAAD7/wQAAAABAAEAAAD7/wMAAAAFAAEAAAD7//3/AAABAAIAAAD7//z/AAABAAEAAAD7//v/AAABAAEAAAD7//r/AAABAAAAAAD6/wUAAAABAAIAAAD6/wQAAAABAAEAAAD6/wMAAAABAAAAAAD6//3/AAABAAIAAAD6//z/AAABAAEAAAD6//v/AAABAAEAAAD6//r/AAABAAAAAAD5/wUAAAABAAIAAAD5/wQAAAABAAEAAAD5/wMAAAABAAAAAAD5//3/AAABAAIAAAD5//z/AAABAAEAAAD5//v/AAABAAEAAAD5//r/AAABAAAAAAD4/wUAAAABAAIAAAD4/wQAAAABAAEAAAD4/wMAAAAEAAEAAAD4/wIAAAACAAEAAAD4/wEAAAACAAEAAAD4/wAAAAACAAEAAAD4////AAACAAEAAAD4//7/AAACAAEAAAD4//3/AAAEAAAAAAD4//z/AAABAAEAAAD4//v/AAABAAEAAAD4//r/AAABAAAAAAD3/wUAAAABAAIAAAD3/wQAAAABAAEAAAD3/wMAAAABAAEAAAD3/wIAAAABAAEAAAD3/wEAAAABAAEAAAD3/wAAAAABAAEAAAD3////AAABAAEAAAD3//7/AAABAAEAAAD3//3/AAABAAEAAAD3//z/AAABAAEAAAD3//v/AAABAAEAAAD3//r/AAABAAAAAAD2/wUAAAABAAIAAAD2/wQAAAABAAEAAAD2/wMAAAABAAEAAAD2/wIAAAABAAEAAAD2/wEAAAABAAEAAAD2/wAAAAABAAEAAAD2////AAABAAEAAAD2//7/AAABAAEAAAD2//3/AAABAAEAAAD2//z/AAABAAEAAAD2//v/AAABAAEAAAD2//r/AAABAAAAAAD1/wUAAAAAAAIAAAD1/wQAAAAAAAEAAAD1/wMAAAAAAAEAAAD1/wIAAAAAAAEAAAD1/wEAAAAAAAEAAAD1/wAAAAAAAAEAAAD1////AAAAAAEAAAD1//7/AAAAAAEAAAD1//3/AAAAAAEAAAD1//z/AAAAAAEAAAD1//v/AAAAAAEAAAD1//r/AAAAAAAAAAD8/wIAAAAFAAEAAAD//wIAAAACAAAAAAD+/wEAAAACAAAAAAD9/wIAAAABAAEAAAD+/wIAAAAEAAEAAAD9/wEAAAAGAAEAAAD8/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD9/wAAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_uq6bi")
@@ -599,7 +592,7 @@ tile_set = SubResource("TileSet_uq6bi")
 [node name="Character" type="CharacterBody2D" parent="." unique_id=203474607]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(27, 40)
+position = Vector2(59, 40)
 script = ExtResource("2_h2yge")
 
 [node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=75158644]
@@ -618,17 +611,8 @@ target_position = Vector2(9, 0)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Character" unique_id=1554345025]
 libraries/ = SubResource("AnimationLibrary_4c57u")
 
-[node name="NinePatchRect" type="NinePatchRect" parent="Character" unique_id=1824473971]
-offset_left = 21.0
-offset_top = -10.0
-offset_right = 53.0
-offset_bottom = 6.0
-texture = SubResource("AnimatedTexture_lquwl")
-region_rect = Rect2(48, 0, 16, 16)
-patch_margin_left = 8
-patch_margin_top = 3
-patch_margin_right = 8
-patch_margin_bottom = 3
+[node name="Camera2D" type="Camera2D" parent="Character" unique_id=401366186]
+position = Vector2(-27, -40)
 
 [node name="Turtle" type="AnimatableBody2D" parent="." unique_id=1116714397]
 position = Vector2(16, 3)
@@ -660,3 +644,21 @@ hframes = 10
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water" unique_id=1383672638]
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_6qx4q")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1982736451]
+
+[node name="JumpButton" parent="UI" unique_id=1982736452 instance=ExtResource("6_touch_btn")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -36.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("7_arrow")
+
+[connection signal="pressed" from="UI/JumpButton" to="Character" method="jump"]
