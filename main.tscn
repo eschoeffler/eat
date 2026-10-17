@@ -679,7 +679,6 @@ shape = SubResource("RectangleShape2D_6qx4q")
 
 [node name="Rock" parent="." unique_id=41106802 instance=ExtResource("9_rock")]
 position = Vector2(87, 38)
-collision_layer = 3
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1982736451]
 
