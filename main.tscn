@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://bccteo5bvpt2x" path="res://drop.gd" id="5_7mycd"]
 [ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://touch_button.tscn" id="6_touch_btn"]
 [ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="7_arrow"]
+[ext_resource type="Texture2D" uid="uid://dtvgfl0ttrk3q" path="res://images/eat.png" id="8_eat"]
+[ext_resource type="PackedScene" uid="uid://ckg45jultjg7b" path="res://rock.tscn" id="9_rock"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_0xm2m")
@@ -411,6 +413,18 @@ tracks/0/keys = {
 "update": 1,
 "values": [Vector2i(0, 1)]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_272bh"]
 resource_name = "idle"
@@ -447,6 +461,23 @@ tracks/0/keys = {
 "values": [Vector2i(2, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_nothing_to_eat"]
+resource_name = "nothing_to_eat"
+length = 0.2
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.2, 0.2, 1), Color(1, 0, 0, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_kek77"]
 resource_name = "walk"
 length = 0.6666834
@@ -470,6 +501,7 @@ _data = {
 &"RESET": SubResource("Animation_7mycd"),
 &"idle": SubResource("Animation_272bh"),
 &"jump": SubResource("Animation_5vw27"),
+&"nothing_to_eat": SubResource("Animation_nothing_to_eat"),
 &"walk": SubResource("Animation_kek77")
 }
 
@@ -645,7 +677,25 @@ hframes = 10
 position = Vector2(-0.5, 1)
 shape = SubResource("RectangleShape2D_6qx4q")
 
+[node name="Rock" parent="." unique_id=41106802 instance=ExtResource("9_rock")]
+position = Vector2(87, 38)
+collision_layer = 3
+
 [node name="UI" type="CanvasLayer" parent="." unique_id=1982736451]
+
+[node name="EatButton" parent="UI" unique_id=1229072838 instance=ExtResource("6_touch_btn")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -36.0
+offset_right = -40.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("8_eat")
 
 [node name="JumpButton" parent="UI" unique_id=1982736452 instance=ExtResource("6_touch_btn")]
 anchors_preset = 3
@@ -661,4 +711,5 @@ grow_horizontal = 0
 grow_vertical = 0
 icon = ExtResource("7_arrow")
 
+[connection signal="pressed" from="UI/EatButton" to="Character" method="eat"]
 [connection signal="pressed" from="UI/JumpButton" to="Character" method="jump"]
