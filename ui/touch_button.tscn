@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://b574y4k0qm65n"]
+
+[ext_resource type="Script" uid="uid://bhvlio2du6m8d" path="res://ui/touch_button.gd" id="1_4c3vx"]
+
+[node name="TouchButton" type="Control" unique_id=2105522082]
+custom_minimum_size = Vector2(28, 28)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 28.0
+offset_bottom = 28.0
+script = ExtResource("1_4c3vx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1792907939]
+position = Vector2(14, 14)
