@@ -405,7 +405,6 @@ tile_map_data = PackedByteArray("AAAKAAUAAAACAAIAAAAKAAQAAAACAAEAAAAKAAMAAAACAAE
 tile_set = SubResource("TileSet_uq6bi")
 
 [node name="Turtle" parent="." unique_id=1172450160 instance=ExtResource("2_d3jkd")]
-position = Vector2(16, 3)
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1982736451]
 

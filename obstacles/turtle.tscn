@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bjwdh6n0utqv4"]
 
-[ext_resource type="Texture2D" uid="uid://b4q2m2vuphiv6" path="res://images/Sharing my pixel art.png" id="1_j8rbx"]
+[ext_resource type="Texture2D" uid="uid://b4q2m2vuphiv6" path="res://images/turtle.png" id="1_j8rbx"]
 
 [sub_resource type="Animation" id="Animation_4c57u"]
 length = 0.001
@@ -107,6 +107,7 @@ _data = {
 }
 
 [node name="Turtle" type="AnimatableBody2D" unique_id=1172450160]
+position = Vector2(16, 3)
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=549734689]
 texture = ExtResource("1_j8rbx")
