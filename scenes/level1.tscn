@@ -1,15 +1,16 @@
 [gd_scene format=4 uid="uid://d0eaj5qq0vpg6"]
 
-[ext_resource type="Texture2D" uid="uid://uurfbl1scwqg" path="res://images/unbreakable_tiles.png" id="1_conm7"]
+[ext_resource type="Texture2D" uid="uid://iwfna7tnaaxi" path="res://images/unbreakable_tiles.png" id="1_conm7"]
 [ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://bjwdh6n0utqv4" path="res://obstacles/turtle.tscn" id="2_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://ui/touch_button.tscn" id="3_u3awl"]
-[ext_resource type="Texture2D" uid="uid://dtvgfl0ttrk3q" path="res://images/eat.png" id="4_2ku1j"]
-[ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="5_f31uk"]
+[ext_resource type="Texture2D" uid="uid://cy4vsuxgnqud8" path="res://images/eat.png" id="4_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://cuaoq2w7r5sfx" path="res://images/arrow_up.png" id="5_f31uk"]
 [ext_resource type="PackedScene" uid="uid://ckg45jultjg7b" path="res://eatables/vanity.tscn" id="6_gnai3"]
 [ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="7_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://t86lroaraoki" path="res://obstacles/water.tscn" id="8_dxn3v"]
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
+[ext_resource type="PackedScene" uid="uid://b5ay02y4bw5ej" path="res://obstacles/button.tscn" id="11_u3awl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_conm7")
@@ -448,6 +449,10 @@ position = Vector2(24, -72)
 [node name="Character" parent="." unique_id=1542657402 instance=ExtResource("9_14jow")]
 position = Vector2(-88, 40)
 
+[node name="Button" parent="." unique_id=1461264325 instance=ExtResource("11_u3awl")]
+position = Vector2(-104, 48)
+
 [connection signal="pressed" from="UI/EatButton" to="Character" method="eat"]
 [connection signal="pressed" from="UI/JumpButton" to="Character" method="jump"]
 [connection signal="died" from="Character" to="." method="_on_died"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

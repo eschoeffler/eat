@@ -1,0 +1,123 @@
+[gd_scene format=3 uid="uid://b5ay02y4bw5ej"]
+
+[ext_resource type="Script" uid="uid://c8aiow13hmfwc" path="res://obstacles/button.gd" id="1_vssqe"]
+[ext_resource type="Texture2D" uid="uid://dvmxy4vmhcxqi" path="res://images/button.png" id="2_qqsd3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vssqe"]
+size = Vector2(12, 5)
+
+[sub_resource type="Animation" id="Animation_qqsd3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-2, -6, 2, -6, 8, 0, -8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_j77gf"]
+resource_name = "not_pressed"
+length = 0.03333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-2, -6, 2, -6, 8, 0, -8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_0m6ye"]
+resource_name = "pressed"
+length = 0.03333667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Collision:polygon")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [PackedVector2Array(-4, -4, 4, -4, 8, 0, -8, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u0nh3"]
+_data = {
+&"RESET": SubResource("Animation_qqsd3"),
+&"not_pressed": SubResource("Animation_j77gf"),
+&"pressed": SubResource("Animation_0m6ye")
+}
+
+[node name="Button" type="StaticBody2D" unique_id=1461264325]
+script = ExtResource("1_vssqe")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2142513043]
+position = Vector2(0, -8)
+texture = ExtResource("2_qqsd3")
+hframes = 3
+vframes = 2
+
+[node name="Collision" type="CollisionPolygon2D" parent="." unique_id=1315635900]
+polygon = PackedVector2Array(-2, -6, 2, -6, 8, 0, -8, 0)
+
+[node name="Top" type="Area2D" parent="." unique_id=1875059479]
+collision_layer = 0
+collision_mask = 14
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top" unique_id=888656434]
+position = Vector2(0, -4.5)
+shape = SubResource("RectangleShape2D_vssqe")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1809276886]
+libraries/ = SubResource("AnimationLibrary_u0nh3")
+
+[connection signal="body_entered" from="Top" to="." method="_add_weight"]
+[connection signal="body_exited" from="Top" to="." method="_remove_weight"]
