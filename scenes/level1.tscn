@@ -1,18 +1,18 @@
 [gd_scene format=4 uid="uid://d0eaj5qq0vpg6"]
 
-[ext_resource type="Texture2D" uid="uid://uurfbl1scwqg" path="res://images/unbreakable_tiles.png" id="1_85g3d"]
-[ext_resource type="Script" uid="uid://djx5ilahrcd5f" path="res://character.gd" id="2_choun"]
-[ext_resource type="Texture2D" uid="uid://d2t8ml5p1aj40" path="res://images/blue_blob.png" id="3_ya4ey"]
-[ext_resource type="Texture2D" uid="uid://b4q2m2vuphiv6" path="res://images/Sharing my pixel art.png" id="4_eb6dy"]
-[ext_resource type="Script" uid="uid://bccteo5bvpt2x" path="res://obstacles/drop.gd" id="5_trceg"]
-[ext_resource type="PackedScene" uid="uid://ckg45jultjg7b" path="res://eatables/vanity.tscn" id="6_a8y0u"]
-[ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://ui/touch_button.tscn" id="7_jkv2x"]
-[ext_resource type="Texture2D" uid="uid://dtvgfl0ttrk3q" path="res://images/eat.png" id="8_jbj1t"]
-[ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="9_muem4"]
-[ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="10_choun"]
+[ext_resource type="Texture2D" uid="uid://uurfbl1scwqg" path="res://images/unbreakable_tiles.png" id="1_conm7"]
+[ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_d3jkd"]
+[ext_resource type="PackedScene" uid="uid://bjwdh6n0utqv4" path="res://obstacles/turtle.tscn" id="2_d3jkd"]
+[ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://ui/touch_button.tscn" id="3_u3awl"]
+[ext_resource type="Texture2D" uid="uid://dtvgfl0ttrk3q" path="res://images/eat.png" id="4_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="5_f31uk"]
+[ext_resource type="PackedScene" uid="uid://ckg45jultjg7b" path="res://eatables/vanity.tscn" id="6_gnai3"]
+[ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="7_i8kv5"]
+[ext_resource type="PackedScene" uid="uid://t86lroaraoki" path="res://obstacles/water.tscn" id="8_dxn3v"]
+[ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
-texture = ExtResource("1_85g3d")
+texture = ExtResource("1_conm7")
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -397,290 +397,19 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
-size = Vector2(12, 10)
-
-[sub_resource type="Animation" id="Animation_7mycd"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:modulate")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.3),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_272bh"]
-resource_name = "idle"
-length = 0.6666834
-loop_mode = 1
-step = 0.16666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.33333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_5vw27"]
-resource_name = "jump"
-length = 0.16668333
-step = 0.16666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(2, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_nothing_to_eat"]
-resource_name = "nothing_to_eat"
-length = 0.2
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 0.2, 0.2, 1), Color(1, 0, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_kek77"]
-resource_name = "walk"
-length = 0.6666834
-loop_mode = 1
-step = 0.16666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.16666667, 0.33333334, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_4c57u"]
-_data = {
-&"RESET": SubResource("Animation_7mycd"),
-&"idle": SubResource("Animation_272bh"),
-&"jump": SubResource("Animation_5vw27"),
-&"nothing_to_eat": SubResource("Animation_nothing_to_eat"),
-&"walk": SubResource("Animation_kek77")
-}
-
-[sub_resource type="Animation" id="Animation_4c57u"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2i(0, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_efxa6"]
-resource_name = "swim"
-length = 1.3333501
-loop_mode = 1
-step = 0.16666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame_coords")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.6666667, 1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dg77c"]
-_data = {
-&"RESET": SubResource("Animation_4c57u"),
-&"swim": SubResource("Animation_efxa6")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gyc6d"]
-size = Vector2(32, 8)
-
-[sub_resource type="Animation" id="Animation_lquwl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(16, 3)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="Animation_1bvp3"]
-resource_name = "move"
-length = 3.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.5, 2.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-16, 4), Vector2(48, 4)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:flip_h")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.033333335, 2.9333334),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_lquwl"]
-_data = {
-&"RESET": SubResource("Animation_lquwl"),
-&"move": SubResource("Animation_1bvp3")
-}
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lquwl"]
-load_path = "res://.godot/imported/water.png-4489bb3549be5afcaa2bc1a833fd0762.ctex"
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qx4q"]
-size = Vector2(7, 6)
-
-[node name="Node2D" type="Node2D" unique_id=273070885]
+[node name="Level1" type="Node2D" unique_id=273070885]
+script = ExtResource("1_d3jkd")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1786442005]
 tile_map_data = PackedByteArray("AAAKAAUAAAACAAIAAAAKAAQAAAACAAEAAAAKAAMAAAACAAEAAAAKAAIAAAACAAEAAAAKAAEAAAACAAEAAAAKAAAAAAACAAEAAAAKAP//AAACAAEAAAAKAP7/AAACAAEAAAAKAP3/AAACAAEAAAAKAPz/AAACAAEAAAAKAPv/AAACAAEAAAAKAPr/AAACAAAAAAAJAAUAAAABAAIAAAAJAAQAAAABAAEAAAAJAAMAAAABAAEAAAAJAAIAAAABAAEAAAAJAAEAAAABAAEAAAAJAAAAAAABAAEAAAAJAP//AAABAAEAAAAJAP7/AAABAAEAAAAJAP3/AAABAAEAAAAJAPz/AAABAAEAAAAJAPv/AAABAAEAAAAJAPr/AAABAAAAAAAIAAUAAAABAAIAAAAIAAQAAAABAAEAAAAIAAMAAAAFAAEAAAAIAAIAAAAAAAEAAAAIAAEAAAAAAAEAAAAIAAAAAAAAAAEAAAAIAP//AAAAAAEAAAAIAP7/AAAAAAEAAAAIAP3/AAAFAAAAAAAIAPz/AAABAAEAAAAIAPv/AAABAAEAAAAIAPr/AAABAAAAAAAHAAUAAAABAAIAAAAHAAQAAAABAAEAAAAHAAMAAAABAAAAAAAHAP3/AAABAAIAAAAHAPz/AAABAAEAAAAHAPv/AAABAAEAAAAHAPr/AAABAAAAAAAGAAUAAAABAAIAAAAGAAQAAAABAAEAAAAGAAMAAAABAAAAAAAGAP3/AAABAAIAAAAGAPz/AAABAAEAAAAGAPv/AAABAAEAAAAGAPr/AAABAAAAAAAFAAUAAAABAAIAAAAFAAQAAAABAAEAAAAFAAMAAAABAAAAAAAFAP3/AAABAAIAAAAFAPz/AAABAAEAAAAFAPv/AAABAAEAAAAFAPr/AAABAAAAAAAEAAUAAAABAAIAAAAEAAQAAAABAAEAAAAEAAMAAAABAAAAAAAEAP3/AAABAAIAAAAEAPz/AAABAAEAAAAEAPv/AAABAAEAAAAEAPr/AAABAAAAAAADAAUAAAABAAIAAAADAAQAAAABAAEAAAADAAMAAAABAAAAAAADAP3/AAABAAIAAAADAPz/AAABAAEAAAADAPv/AAABAAEAAAADAPr/AAABAAAAAAACAAUAAAABAAIAAAACAAQAAAABAAEAAAACAAMAAAABAAAAAAACAP3/AAAAAAIAAAACAPz/AAAAAAEAAAACAPv/AAAAAAEAAAACAPr/AAADAAQAAAABAAUAAAABAAIAAAABAAQAAAABAAEAAAABAAMAAAABAAAAAAABAPr/AAABAAMAAAAAAAUAAAABAAIAAAAAAAQAAAABAAEAAAAAAAMAAAABAAAAAAAAAP3/AAACAAIAAAAAAPz/AAACAAEAAAAAAPv/AAACAAEAAAAAAPr/AAACAAQAAAD//wUAAAABAAIAAAD//wQAAAABAAEAAAD//wMAAAAEAAEAAAD///3/AAABAAIAAAD///z/AAABAAEAAAD///v/AAABAAEAAAD///r/AAABAAAAAAD+/wUAAAABAAIAAAD+/wQAAAABAAEAAAD+/wMAAAABAAEAAAD+//3/AAABAAIAAAD+//z/AAABAAEAAAD+//v/AAABAAEAAAD+//r/AAABAAAAAAD9/wUAAAABAAIAAAD9/wQAAAABAAEAAAD9/wMAAAABAAEAAAD9//3/AAABAAIAAAD9//z/AAABAAEAAAD9//v/AAABAAEAAAD9//r/AAABAAAAAAD8/wUAAAABAAIAAAD8/wQAAAABAAEAAAD8/wMAAAABAAEAAAD8//3/AAABAAIAAAD8//z/AAABAAEAAAD8//v/AAABAAEAAAD8//r/AAABAAAAAAD7/wUAAAABAAIAAAD7/wQAAAABAAEAAAD7/wMAAAAFAAEAAAD7//3/AAABAAIAAAD7//z/AAABAAEAAAD7//v/AAABAAEAAAD7//r/AAABAAAAAAD6/wUAAAABAAIAAAD6/wQAAAABAAEAAAD6/wMAAAABAAAAAAD6//3/AAABAAIAAAD6//z/AAABAAEAAAD6//v/AAABAAEAAAD6//r/AAABAAAAAAD5/wUAAAABAAIAAAD5/wQAAAABAAEAAAD5/wMAAAABAAAAAAD5//3/AAABAAIAAAD5//z/AAABAAEAAAD5//v/AAABAAEAAAD5//r/AAABAAAAAAD4/wUAAAABAAIAAAD4/wQAAAABAAEAAAD4/wMAAAAEAAEAAAD4/wIAAAACAAEAAAD4/wEAAAACAAEAAAD4/wAAAAACAAEAAAD4////AAACAAEAAAD4//7/AAACAAEAAAD4//3/AAAEAAAAAAD4//z/AAABAAEAAAD4//v/AAABAAEAAAD4//r/AAABAAAAAAD3/wUAAAABAAIAAAD3/wQAAAABAAEAAAD3/wMAAAABAAEAAAD3/wIAAAABAAEAAAD3/wEAAAABAAEAAAD3/wAAAAABAAEAAAD3////AAABAAEAAAD3//7/AAABAAEAAAD3//3/AAABAAEAAAD3//z/AAABAAEAAAD3//v/AAABAAEAAAD3//r/AAABAAAAAAD2/wUAAAABAAIAAAD2/wQAAAABAAEAAAD2/wMAAAABAAEAAAD2/wIAAAABAAEAAAD2/wEAAAABAAEAAAD2/wAAAAABAAEAAAD2////AAABAAEAAAD2//7/AAABAAEAAAD2//3/AAABAAEAAAD2//z/AAABAAEAAAD2//v/AAABAAEAAAD2//r/AAABAAAAAAD1/wUAAAAAAAIAAAD1/wQAAAAAAAEAAAD1/wMAAAAAAAEAAAD1/wIAAAAAAAEAAAD1/wEAAAAAAAEAAAD1/wAAAAAAAAEAAAD1////AAAAAAEAAAD1//7/AAAAAAEAAAD1//3/AAAAAAEAAAD1//z/AAAAAAEAAAD1//v/AAAAAAEAAAD1//r/AAAAAAAAAAD8/wIAAAAFAAEAAAD//wIAAAACAAAAAAD+/wEAAAACAAAAAAD9/wIAAAABAAEAAAD+/wIAAAAEAAEAAAD9/wEAAAAGAAEAAAD8/wEAAAAAAAAAAAD7/wIAAAAAAAAAAAD9/wAAAAADAAAAAAA=")
 tile_set = SubResource("TileSet_uq6bi")
 
-[node name="Character" type="CharacterBody2D" parent="." unique_id=203474607]
-z_index = 1
-y_sort_enabled = true
-position = Vector2(59, 40)
-script = ExtResource("2_choun")
-
-[node name="Sprite2D" type="Sprite2D" parent="Character" unique_id=75158644]
-texture = ExtResource("3_ya4ey")
-hframes = 4
-vframes = 2
-frame = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" unique_id=1302734096]
-position = Vector2(0, 3)
-shape = SubResource("RectangleShape2D_g7b7a")
-
-[node name="RayCast2D" type="RayCast2D" parent="Character" unique_id=1453778730]
-target_position = Vector2(9, 0)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Character" unique_id=1554345025]
-libraries/ = SubResource("AnimationLibrary_4c57u")
-
-[node name="Camera2D" type="Camera2D" parent="Character" unique_id=401366186]
-position = Vector2(-27, -40)
-
-[node name="Turtle" type="AnimatableBody2D" parent="." unique_id=1116714397]
+[node name="Turtle" parent="." unique_id=1172450160 instance=ExtResource("2_d3jkd")]
 position = Vector2(16, 3)
-
-[node name="Sprite2D" type="Sprite2D" parent="Turtle" unique_id=420367208]
-texture = ExtResource("4_eb6dy")
-hframes = 3
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Turtle/Sprite2D" unique_id=1559615444]
-libraries/ = SubResource("AnimationLibrary_dg77c")
-autoplay = &"swim"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Turtle" unique_id=241656525]
-shape = SubResource("RectangleShape2D_gyc6d")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Turtle" unique_id=686090420]
-libraries/ = SubResource("AnimationLibrary_lquwl")
-autoplay = &"move"
-
-[node name="Water" type="CharacterBody2D" parent="." unique_id=959636153]
-position = Vector2(24, -72)
-script = ExtResource("5_trceg")
-
-[node name="Sprite2D" type="Sprite2D" parent="Water" unique_id=447585183]
-position = Vector2(0, -1)
-texture = SubResource("CompressedTexture2D_lquwl")
-hframes = 10
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Water" unique_id=1383672638]
-position = Vector2(-0.5, 1)
-shape = SubResource("RectangleShape2D_6qx4q")
 
 [node name="UI" type="CanvasLayer" parent="." unique_id=1982736451]
 
-[node name="EatButton" parent="UI" unique_id=1229072838 instance=ExtResource("7_jkv2x")]
+[node name="EatButton" parent="UI" unique_id=1229072838 instance=ExtResource("3_u3awl")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -692,9 +421,9 @@ offset_right = -40.0
 offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
-icon = ExtResource("8_jbj1t")
+icon = ExtResource("4_2ku1j")
 
-[node name="JumpButton" parent="UI" unique_id=1982736452 instance=ExtResource("7_jkv2x")]
+[node name="JumpButton" parent="UI" unique_id=1982736452 instance=ExtResource("3_u3awl")]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
@@ -706,13 +435,18 @@ offset_right = -8.0
 offset_bottom = -8.0
 grow_horizontal = 0
 grow_vertical = 0
-icon = ExtResource("9_muem4")
+icon = ExtResource("5_f31uk")
 
-[node name="Vanity" parent="." unique_id=104939800 instance=ExtResource("6_a8y0u")]
+[node name="Vanity" parent="." unique_id=104939800 instance=ExtResource("6_gnai3")]
 position = Vector2(120, 38)
 
-[node name="Bed" parent="." unique_id=901779161 instance=ExtResource("10_choun")]
+[node name="Bed" parent="." unique_id=901779161 instance=ExtResource("7_i8kv5")]
 position = Vector2(85, 38)
 
-[connection signal="pressed" from="UI/EatButton" to="Character" method="eat"]
-[connection signal="pressed" from="UI/JumpButton" to="Character" method="jump"]
+[node name="Water" parent="." unique_id=664865692 instance=ExtResource("8_dxn3v")]
+position = Vector2(24, -72)
+
+[node name="Character" parent="." unique_id=1542657402 instance=ExtResource("9_14jow")]
+position = Vector2(-88, 40)
+
+[connection signal="died" from="Character" to="." method="_on_died"]

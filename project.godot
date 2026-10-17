@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="eat"
-run/main_scene="res://scenes/main.tscn"
+run/main_scene="res://scenes/level1.tscn"
 config/features=PackedStringArray("4.6", "Mobile")
 
 [display]
@@ -51,7 +51,10 @@ Eat={
 
 [layer_names]
 
+2d_physics/layer_1="environment"
 2d_physics/layer_2="eatable"
+2d_physics/layer_3="enemy"
+2d_physics/layer_4="player"
 
 [physics]
 

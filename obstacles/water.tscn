@@ -9,6 +9,7 @@ load_path = "res://.godot/imported/water.png-4489bb3549be5afcaa2bc1a833fd0762.ct
 size = Vector2(7, 6)
 
 [node name="Water" type="CharacterBody2D" unique_id=664865692]
+collision_layer = 6
 script = ExtResource("1_bdk6y")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1505724477]
