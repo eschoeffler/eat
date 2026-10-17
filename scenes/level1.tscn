@@ -449,4 +449,6 @@ position = Vector2(24, -72)
 [node name="Character" parent="." unique_id=1542657402 instance=ExtResource("9_14jow")]
 position = Vector2(-88, 40)
 
+[connection signal="pressed" from="UI/EatButton" to="Character" method="eat"]
+[connection signal="pressed" from="UI/JumpButton" to="Character" method="jump"]
 [connection signal="died" from="Character" to="." method="_on_died"]
