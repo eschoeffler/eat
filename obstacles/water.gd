@@ -16,3 +16,9 @@ func _physics_process(delta: float) -> void:
     if collision and collision.get_collider():
         position = spawn_position
         velocity = Vector2.ZERO
+
+
+func eat() -> Dictionary:
+    if get_parent():
+        get_parent().remove_child(self)
+    return {"type": Eatable.WATER, "obj": self}
