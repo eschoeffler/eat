@@ -4,7 +4,7 @@ signal pressed(is_pressed: bool)
 
 const BUTTON_PRESS_DEBOUNCE = 0.1
 
-@export var weight_threshold: int = 2
+@export var weight_threshold: int = 1
 
 var _is_pressed = false
 var _unpress_timer: SceneTreeTimer = null
