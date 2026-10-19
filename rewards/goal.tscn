@@ -7,6 +7,8 @@
 size = Vector2(10, 10)
 
 [node name="Goal" type="Area2D" unique_id=34909786]
+collision_layer = 0
+collision_mask = 8
 script = ExtResource("1_redsy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2017725547]

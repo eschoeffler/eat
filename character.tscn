@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://i2l74xjld3vm"]
 
 [ext_resource type="Script" uid="uid://djx5ilahrcd5f" path="res://character.gd" id="1_rkhd4"]
-[ext_resource type="Texture2D" uid="uid://d2t8ml5p1aj40" path="res://images/blue_blob.png" id="2_lrhn5"]
+[ext_resource type="Texture2D" uid="uid://dspwu2tb34kdr" path="res://images/blue_blob.png" id="2_lrhn5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g7b7a"]
 size = Vector2(12, 10)
@@ -138,7 +138,7 @@ target_position = Vector2(9, 0)
 libraries/ = SubResource("AnimationLibrary_4c57u")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=540761429]
-position = Vector2(-27, -40)
+position = Vector2(0, 2)
 
 [node name="Area2D" type="Area2D" parent="." unique_id=69326192]
 collision_layer = 8
