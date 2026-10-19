@@ -8,6 +8,8 @@ signal button_up
 const NORMAL_COLOR = Color(1.0, 1.0, 1.0, 0.4)
 const PRESSED_COLOR = Color(0.2, 0.55, 1.0, 0.85)
 
+@export var action = ""
+@export var hide_background = false
 @export var icon: Texture2D:
     set(value):
         icon = value
@@ -28,6 +30,8 @@ func _ready() -> void:
 
 
 func _draw() -> void:
+    if not is_pressed and hide_background:
+        return
     var center = size / 2.0
     var radius = min(size.x, size.y) / 2.0
     var color = PRESSED_COLOR if is_pressed else NORMAL_COLOR
@@ -48,6 +52,7 @@ func _gui_input(event: InputEvent) -> void:
                 _set_pressed(true)
                 button_down.emit()
                 pressed.emit()
+                _trigger_action()
         else:
             if is_pressed:
                 _set_pressed(false)
@@ -60,6 +65,7 @@ func _gui_input(event: InputEvent) -> void:
                 _set_pressed(true)
                 button_down.emit()
                 pressed.emit()
+                _trigger_action()
         else:
             if is_pressed and (touch_index == -1 or event.index == touch_index):
                 touch_index = -1
@@ -87,3 +93,10 @@ func _set_pressed(value: bool) -> void:
     if is_pressed != value:
         is_pressed = value
         queue_redraw()
+
+
+func _trigger_action() -> void:
+    var ev = InputEventAction.new()
+    ev.action = action
+    ev.pressed = true
+    Input.parse_input_event(ev)
