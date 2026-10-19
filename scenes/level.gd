@@ -14,3 +14,8 @@ func _on_button_pressed(is_pressed: bool) -> void:
     else:
         if water and not water.get_parent():
             add_child(water)
+
+
+func _on_win() -> void:
+    print("Win")
+    get_tree().change_scene_to_file("res://scenes/menu.tscn")

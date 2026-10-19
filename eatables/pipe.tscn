@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cexfwhchjlmpt"]
+
+[ext_resource type="Script" uid="uid://cx6wtenloqx4f" path="res://eatables/pipe.gd" id="1_2cmgx"]
+[ext_resource type="Texture2D" uid="uid://c2msemvvfrc55" path="res://images/random.png" id="2_0035t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_68h2w"]
+size = Vector2(16, 16)
+
+[node name="Pipe" type="CharacterBody2D" unique_id=104939800]
+collision_layer = 3
+script = ExtResource("1_2cmgx")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=162110916]
+position = Vector2(8, -8)
+texture = ExtResource("2_0035t")
+hframes = 5
+vframes = 5
+frame = 21
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1593067356]
+shape = SubResource("RectangleShape2D_68h2w")
+
+[node name="Timer" type="Timer" parent="." unique_id=2105403103]

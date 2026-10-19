@@ -4,7 +4,7 @@ signal died
 
 const DIST = 16
 const SPEED = 64
-const JUMP = -200
+const JUMP = -250
 const ROCK_SPEED_FACTOR = 0.5
 
 var target_x = 0

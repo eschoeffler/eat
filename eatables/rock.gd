@@ -1,4 +1,4 @@
-class_name Rock extends CharacterBody2D
+class_name Rock extends Eatable
 
 const MAX_SPEED = 100
 
@@ -51,9 +51,3 @@ func get_weight() -> int:
         else:
             weight += 1
     return weight
-
-
-func eat() -> Dictionary:
-    if get_parent():
-        get_parent().remove_child(self)
-    return {"type": Eatable.ROCK, "obj": self}
