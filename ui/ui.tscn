@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://cm2bbr51cbw24"]
+
+[ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://ui/touch_button.tscn" id="1_wl5ax"]
+[ext_resource type="Texture2D" uid="uid://cy4vsuxgnqud8" path="res://images/eat.png" id="2_vkava"]
+[ext_resource type="Texture2D" uid="uid://cuaoq2w7r5sfx" path="res://images/arrow_up.png" id="3_tf0e0"]
+
+[node name="UI" type="CanvasLayer" unique_id=1879053250]
+
+[node name="EatButton" parent="." unique_id=2105522082 instance=ExtResource("1_wl5ax")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -68.0
+offset_top = -36.0
+offset_right = -40.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("2_vkava")
+
+[node name="JumpButton" parent="." unique_id=989474449 instance=ExtResource("1_wl5ax")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.0
+offset_top = -36.0
+offset_right = -8.0
+offset_bottom = -8.0
+grow_horizontal = 0
+grow_vertical = 0
+icon = ExtResource("3_tf0e0")
