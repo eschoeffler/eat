@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://bj72xdj5wobgi"]
+
+[ext_resource type="Texture2D" uid="uid://c2msemvvfrc55" path="res://images/random.png" id="2_ulrge"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wykyb"]
+size = Vector2(16, 9)
+
+[node name="Spike" type="StaticBody2D" unique_id=1312429050]
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=647773083]
+texture_repeat = 2
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_wykyb")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=910944293]
+position = Vector2(8, -8)
+texture = ExtResource("2_ulrge")
+hframes = 5
+vframes = 5
+frame = 23
