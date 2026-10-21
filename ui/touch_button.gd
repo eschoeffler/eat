@@ -24,9 +24,11 @@ var touch_index = -1
 
 
 func _ready() -> void:
-    mouse_filter = Control.MOUSE_FILTER_STOP
-    sprite_2d.texture = icon
-    sprite_2d.position = size / 2.0
+    # Pass allows touch streams to flow simultaneously alongside the joystick
+    mouse_filter = Control.MOUSE_FILTER_PASS
+    if not Engine.is_editor_hint():
+        sprite_2d.texture = icon
+        sprite_2d.position = size / 2.0
 
 
 func _draw() -> void:
@@ -55,9 +57,7 @@ func _gui_input(event: InputEvent) -> void:
         else:
             if is_pressed and (touch_index == -1 or event.index == touch_index):
                 touch_index = -1
-                _set_pressed(false)
-                button_up.emit()
-                _trigger_action(false)
+                _release_button()
         accept_event()
 
     elif event is InputEventScreenDrag and is_pressed:
@@ -78,10 +78,19 @@ func _set_pressed(value: bool) -> void:
         queue_redraw()
 
 
+func _release_button() -> void:
+    # Forces a 0.05s latch so the engine renders the blue color before resetting
+    await get_tree().create_timer(0.05).timeout
+    _set_pressed(false)
+    button_up.emit()
+    _trigger_action(false)
+
+
 func _trigger_action(is_down: bool) -> void:
     if action.is_empty():
         return
-    var ev = InputEventAction.new()
-    ev.action = action
-    ev.pressed = is_down
-    Input.parse_input_event(ev)
+    # Use direct action pressing to bypass low-level input queue processing lag
+    if is_down:
+        Input.action_press(action)
+    else:
+        Input.action_release(action)
