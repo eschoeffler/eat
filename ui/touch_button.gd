@@ -43,35 +43,23 @@ func _draw() -> void:
 func _gui_input(event: InputEvent) -> void:
     if Engine.is_editor_hint():
         return
-    if (
-        event is InputEventMouseButton
-        and event.button_index == MOUSE_BUTTON_LEFT
-    ):
-        if event.pressed:
-            if not is_pressed:
-                _set_pressed(true)
-                button_down.emit()
-                pressed.emit()
-                _trigger_action()
-        else:
-            if is_pressed:
-                _set_pressed(false)
-                button_up.emit()
-        accept_event()
-    elif event is InputEventScreenTouch:
+
+    if event is InputEventScreenTouch:
         if event.pressed:
             if not is_pressed:
                 touch_index = event.index
                 _set_pressed(true)
                 button_down.emit()
                 pressed.emit()
-                _trigger_action()
+                _trigger_action(true)
         else:
             if is_pressed and (touch_index == -1 or event.index == touch_index):
                 touch_index = -1
                 _set_pressed(false)
                 button_up.emit()
+                _trigger_action(false)
         accept_event()
+
     elif event is InputEventScreenDrag and is_pressed:
         if touch_index == -1 or event.index == touch_index:
             var center = size / 2.0
@@ -80,13 +68,8 @@ func _gui_input(event: InputEvent) -> void:
                 touch_index = -1
                 _set_pressed(false)
                 button_up.emit()
+                _trigger_action(false)
         accept_event()
-    elif event is InputEventMouseMotion and is_pressed:
-        var center = size / 2.0
-        var radius = min(size.x, size.y) / 2.0
-        if (event.position - center).length() > radius + 8.0:
-            _set_pressed(false)
-            button_up.emit()
 
 
 func _set_pressed(value: bool) -> void:
@@ -95,8 +78,10 @@ func _set_pressed(value: bool) -> void:
         queue_redraw()
 
 
-func _trigger_action() -> void:
+func _trigger_action(is_down: bool) -> void:
+    if action.is_empty():
+        return
     var ev = InputEventAction.new()
     ev.action = action
-    ev.pressed = true
+    ev.pressed = is_down
     Input.parse_input_event(ev)
