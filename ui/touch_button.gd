@@ -89,8 +89,9 @@ func _release_button() -> void:
 func _trigger_action(is_down: bool) -> void:
     if action.is_empty():
         return
-    # Use direct action pressing to bypass low-level input queue processing lag
-    if is_down:
-        Input.action_press(action)
-    else:
-        Input.action_release(action)
+
+    var ev = InputEventAction.new()
+    ev.action = StringName(action)
+    ev.pressed = is_down
+
+    Input.parse_input_event(ev)
