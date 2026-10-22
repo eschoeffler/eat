@@ -11,6 +11,7 @@ var target_x = 0
 var moving = true
 var drag_pos = Vector2(0, 0)
 var joystick = Vector2(0, 0)
+var joystick_finger_index: int = -1
 var facing_direction = 1
 var mouth_item = null
 
@@ -45,11 +46,20 @@ func _unhandled_input(event: InputEvent) -> void:
         eat()
     if event is InputEventScreenTouch:
         if event.pressed:
-            drag_pos = event.position
+            # Only start a new joystick track if we aren't already tracking a finger
+            if joystick_finger_index == -1:
+                joystick_finger_index = event.index
+                drag_pos = event.position
         else:
-            joystick = Vector2.ZERO
-    if event is InputEventScreenDrag and drag_pos:
-        joystick = event.position - drag_pos
+            # Only clear the joystick if the finger lifting is the one WE are tracking
+            if event.index == joystick_finger_index:
+                joystick_finger_index = -1
+                joystick = Vector2.ZERO
+
+    if event is InputEventScreenDrag:
+        # Ignore any drag event that doesn't belong to our locked finger index
+        if event.index == joystick_finger_index and drag_pos != Vector2.ZERO:
+            joystick = event.position - drag_pos
 
 
 func set_target(dir):
