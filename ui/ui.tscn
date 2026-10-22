@@ -8,16 +8,16 @@
 [node name="UI" type="CanvasLayer" unique_id=1879053250]
 
 [node name="EatButton" parent="." unique_id=2105522082 instance=ExtResource("1_wl5ax")]
-position = Vector2(232, 120)
-hide_background = null
-icon = ExtResource("2_vkava")
+position = Vector2(224, 112)
+texture_normal = ExtResource("2_vkava")
+action = "Eat"
 
 [node name="Menu" parent="." unique_id=1658084263 instance=ExtResource("1_wl5ax")]
-position = Vector2(240, 16)
-hide_background = true
-icon = ExtResource("3_vkava")
+position = Vector2(232, 8)
+texture_normal = ExtResource("3_vkava")
+action = "Menu"
 
 [node name="JumpButton" parent="." unique_id=989474449 instance=ExtResource("1_wl5ax")]
-position = Vector2(192, 120)
-hide_background = null
-icon = ExtResource("3_tf0e0")
+position = Vector2(184, 112)
+texture_normal = ExtResource("3_tf0e0")
+action = "Jump"

@@ -48,16 +48,7 @@ func _unhandled_input(event: InputEvent) -> void:
             drag_pos = event.position
         else:
             joystick = Vector2.ZERO
-    if event is InputEventMouseButton:
-        if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-            drag_pos = event.position
-        else:
-            drag_pos = null
-            joystick = Vector2.ZERO
-    if (
-        (event is InputEventScreenDrag or event is InputEventMouseMotion)
-        and drag_pos
-    ):
+    if event is InputEventScreenDrag and drag_pos:
         joystick = event.position - drag_pos
 
 
