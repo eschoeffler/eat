@@ -12,7 +12,7 @@ config_version=5
 
 config/name="eat"
 run/main_scene="res://scenes/level1.tscn"
-config/features=PackedStringArray("4.7", "Mobile")
+config/features=PackedStringArray("4.6", "Mobile")
 
 [display]
 
@@ -59,7 +59,6 @@ Menu={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
-pointing/emulate_mouse_from_touch=false
 
 [layer_names]
 
@@ -76,6 +75,7 @@ pointing/emulate_mouse_from_touch=false
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="mobile"
+textures/vram_compression/import_etc2_astc=true
 
 [xogot]
 
@@ -94,3 +94,4 @@ project/editorState=[{
 project/shaderEditorState=[]
 project/breakpoints={}
 project/disabled_breakpoints={}
+textures/vram_compression/import_etc2_astc=true
