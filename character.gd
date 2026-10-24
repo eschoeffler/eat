@@ -10,8 +10,8 @@ const ROCK_SPEED_FACTOR = 0.5
 # direction before jumping off a ladder.
 const LADDER_JUMP_OFF_TIME = 0.1
 # The amount of time to wait before allowing the character
-# to get back on a ladder after jumping off.
-const CLIMB_COOLDOWN = 0.2
+# to start climbing a ladder after they first press up on joystick
+const CLIMB_DELAY = 0.1
 # The amount of time after jumping off a ladder that it takes
 # before gravity starts kicking in again.
 const LADDER_GRAVITY_COOLDOWN = 0.1
@@ -19,7 +19,7 @@ const LADDER_GRAVITY_COOLDOWN = 0.1
 var target_x = 0
 var moving = true
 var drag_pos = Vector2(0, 0)
-var joystick = Vector2(0, 0)
+var joystick: Vector2i = Vector2i(0, 0)
 var joystick_finger_index: int = -1
 var facing_direction = 1
 var mouth_item = null
@@ -44,24 +44,28 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
     var joystick_direction = _get_joystick_dir()
 
-    if climb_cooldown > 0.0:
-        climb_cooldown -= delta
     if ladder_gravity_cooldown > 0.0:
         ladder_gravity_cooldown -= delta
 
     if (
         not is_climbing
         and not overlapping_ladders.is_empty()
-        and climb_cooldown <= 0.0
     ):
         if abs(joystick_direction.y) > abs(joystick_direction.x):
-            is_climbing = true
-            climb_exit_timer = 0.0
-            climb_exit_dir = 0
-            var ladder = overlapping_ladders[-1]
-            global_position.x = ladder.global_position.x
-            velocity.x = 0
-
+            if climb_cooldown < CLIMB_DELAY:
+                climb_cooldown += delta
+            else:
+                is_climbing = true
+                climb_exit_timer = 0.0
+                climb_exit_dir = 0
+                var ladder = overlapping_ladders[-1]
+                global_position.x = ladder.global_position.x
+                velocity.x = 0
+        else:
+            climb_cooldown = 0
+    else:
+        climb_cooldown = 0
+    
     if is_climbing:
         _process_climbing_physics(joystick_direction, delta)
     else:
@@ -92,7 +96,6 @@ func _process_climbing_physics(
             is_climbing = false
             climb_exit_timer = 0.0
             climb_exit_dir = 0
-            climb_cooldown = 0.2
             ladder_gravity_cooldown = LADDER_GRAVITY_COOLDOWN
             set_target(joystick_direction.x)
             move_and_slide()
@@ -132,6 +135,7 @@ func _unhandled_input(event: InputEvent) -> void:
         jump()
     if event.is_action_pressed("Eat") and not event.is_echo():
         eat()
+    
     if event is InputEventScreenTouch:
         if event.pressed:
             # Only start a new joystick track if we aren't already tracking a finger
@@ -142,12 +146,12 @@ func _unhandled_input(event: InputEvent) -> void:
             # Only clear the joystick if the finger lifting is the one WE are tracking
             if event.index == joystick_finger_index:
                 joystick_finger_index = -1
-                joystick = Vector2.ZERO
+                joystick = Vector2i.ZERO
 
     if event is InputEventScreenDrag:
         # Ignore any drag event that doesn't belong to our locked finger index
-        if event.index == joystick_finger_index and drag_pos != Vector2.ZERO:
-            joystick = event.position - drag_pos
+        if event.index == joystick_finger_index:
+            joystick = Vector2i(event.position - drag_pos)
 
 
 func set_target(dir):
@@ -259,13 +263,21 @@ func _get_speed() -> float:
         return SPEED * ROCK_SPEED_FACTOR
     return SPEED
 
-
 func _get_joystick_dir() -> Vector2i:
-    var left_pressed = Input.is_action_pressed("Left") or joystick.x < -5
-    var right_pressed = Input.is_action_pressed("Right") or joystick.x > 5
-    var up_pressed = Input.is_action_pressed("Up") or joystick.y < -5
-    var down_pressed = Input.is_action_pressed("Down") or joystick.y > 5
-    return Vector2(
-        -1 if left_pressed else 1 if right_pressed else 0,
-        -1 if up_pressed else 1 if down_pressed else 0,
+    var combined_joystick = joystick
+    if Input.is_action_pressed("Left"):
+        combined_joystick = Vector2i(-5, 0)
+    elif Input.is_action_pressed("Right"):
+        combined_joystick = Vector2i(5, 0)
+    elif Input.is_action_pressed("Up"):
+        combined_joystick = Vector2i(0, -5)
+    elif Input.is_action_pressed("Down"):
+        combined_joystick = Vector2i(0, 5)
+        
+    var horiz = combined_joystick.x
+    var vert = combined_joystick.y
+    var use_horiz = abs(horiz) >= abs(vert)
+    return Vector2i(
+        sign(horiz) if use_horiz else 0,
+        sign(vert) if not use_horiz else 0,
     )

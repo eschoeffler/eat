@@ -8,7 +8,6 @@ func _physics_process(delta: float) -> void:
     velocity.y = min(velocity.y, MAX_SPEED)
     var collision = move_and_collide(velocity * delta)
     if collision and collision.get_collider():
-        print(collision.get_collider())
         if not collision.get_collider() is Pipe:
             queue_free()
 

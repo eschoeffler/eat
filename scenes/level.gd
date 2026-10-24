@@ -7,8 +7,11 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _on_died() -> void:
-    get_tree().change_scene_to_file("res://scenes/menu.tscn")
+    call_deferred("_go_to_menu")
 
 
 func _on_win() -> void:
+    call_deferred("_go_to_menu")
+
+func _go_to_menu():
     get_tree().change_scene_to_file("res://scenes/menu.tscn")
