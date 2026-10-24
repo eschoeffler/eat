@@ -8,7 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://b12t6mkv10xjj" path="res://obstacles/wall.tscn" id="8_hrcei"]
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_o3sye"]
 [ext_resource type="PackedScene" uid="uid://bj72xdj5wobgi" path="res://obstacles/spikes.tscn" id="9_xa7n4"]
+[ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="10_8g4ke"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="10_24ks5"]
+[ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="11_56gwk"]
+[ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="12_ve5ok"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_8g4ke")
@@ -428,6 +431,26 @@ position = Vector2(-88, -24)
 
 [node name="Spike2" parent="." unique_id=1519655116 instance=ExtResource("9_xa7n4")]
 position = Vector2(-72, -24)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=1568165674]
+z_index = -1
+scroll_scale = Vector2(1.2, 1.2)
+
+[node name="Cloud2" type="Sprite2D" parent="Parallax2D" unique_id=1848709549]
+position = Vector2(-192, -136)
+texture = ExtResource("10_8g4ke")
+
+[node name="Cloud1" type="Sprite2D" parent="Parallax2D" unique_id=393789315]
+position = Vector2(64, -208)
+texture = ExtResource("11_56gwk")
+
+[node name="Bush1" type="Sprite2D" parent="Parallax2D" unique_id=2108428977]
+position = Vector2(152, 32)
+texture = ExtResource("12_ve5ok")
+
+[node name="Bush2" type="Sprite2D" parent="Parallax2D" unique_id=489470352]
+position = Vector2(-72, 0)
+texture = ExtResource("12_ve5ok")
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]

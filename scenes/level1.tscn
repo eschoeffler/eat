@@ -9,7 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
 [ext_resource type="PackedScene" uid="uid://c0m2b851cbw24" path="res://obstacles/ladder.tscn" id="10_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://cexfwhchjlmpt" path="res://eatables/pipe.tscn" id="11_2ku1j"]
+[ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="11_f31uk"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="11_u3awl"]
+[ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="12_gnai3"]
+[ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="13_i8kv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_conm7")
@@ -452,6 +455,30 @@ size = Vector2(16, 64)
 [node name="Ladder" parent="." unique_id=239760094 instance=ExtResource("10_d3jkd")]
 position = Vector2(-168, 0)
 size = Vector2(16, 64)
+
+[node name="Parallax2D" type="Parallax2D" parent="." unique_id=370467767]
+z_index = -2
+scroll_scale = Vector2(1.2, 1.2)
+
+[node name="Bush1" type="Sprite2D" parent="Parallax2D" unique_id=2136040015]
+position = Vector2(-160, 40)
+texture = ExtResource("11_f31uk")
+
+[node name="Bush2" type="Sprite2D" parent="Parallax2D" unique_id=1536361195]
+position = Vector2(136, 32)
+texture = ExtResource("11_f31uk")
+
+[node name="Cloud1" type="Sprite2D" parent="Parallax2D" unique_id=1597776855]
+position = Vector2(-211, -163.5)
+texture = ExtResource("12_gnai3")
+
+[node name="Cloud2" type="Sprite2D" parent="Parallax2D" unique_id=1235419909]
+position = Vector2(29, -59.5)
+texture = ExtResource("13_i8kv5")
+
+[node name="Cloud3" type="Sprite2D" parent="Parallax2D" unique_id=1902855774]
+position = Vector2(-323, 52.5)
+texture = ExtResource("13_i8kv5")
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]
