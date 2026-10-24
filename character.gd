@@ -6,6 +6,15 @@ const DIST = 16
 const SPEED = 64
 const JUMP = -250
 const ROCK_SPEED_FACTOR = 0.5
+# The amount of time the joystick must move in a horizontal
+# direction before jumping off a ladder.
+const LADDER_JUMP_OFF_TIME = 0.1
+# The amount of time to wait before allowing the character
+# to get back on a ladder after jumping off.
+const CLIMB_COOLDOWN = 0.2
+# The amount of time after jumping off a ladder that it takes
+# before gravity starts kicking in again.
+const LADDER_GRAVITY_COOLDOWN = 0.1
 
 var target_x = 0
 var moving = true
@@ -14,6 +23,13 @@ var joystick = Vector2(0, 0)
 var joystick_finger_index: int = -1
 var facing_direction = 1
 var mouth_item = null
+
+var overlapping_ladders: Array[Node2D] = []
+var is_climbing: bool = false
+var climb_exit_timer: float = 0.0
+var climb_exit_dir: int = 0
+var climb_cooldown: float = 0.0
+var ladder_gravity_cooldown: float = 0.0
 
 @onready var ray_cast = $RayCast2D
 @onready var animation_player = $AnimationPlayer
@@ -26,17 +42,89 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-    if Input.is_action_pressed("Left") or joystick.x < -5:
-        set_target(-1)
-    elif Input.is_action_pressed("Right") or joystick.x > 5:
-        set_target(1)
+    var joystick_direction = _get_joystick_dir()
+
+    if climb_cooldown > 0.0:
+        climb_cooldown -= delta
+    if ladder_gravity_cooldown > 0.0:
+        ladder_gravity_cooldown -= delta
+
+    if (
+        not is_climbing
+        and not overlapping_ladders.is_empty()
+        and climb_cooldown <= 0.0
+    ):
+        if abs(joystick_direction.y) > abs(joystick_direction.x):
+            is_climbing = true
+            climb_exit_timer = 0.0
+            climb_exit_dir = 0
+            var ladder = overlapping_ladders[-1]
+            global_position.x = ladder.global_position.x
+            velocity.x = 0
+
+    if is_climbing:
+        _process_climbing_physics(joystick_direction, delta)
     else:
-        set_target(0)
+        _process_normal_physics(joystick_direction, delta)
+
+
+func _process_normal_physics(joystick_direction: Vector2, delta: float) -> void:
+    set_target(joystick_direction.x)
 
     if not is_on_floor():
         play("jump")
-    velocity += get_gravity() * delta
+    if ladder_gravity_cooldown <= 0.0:
+        velocity += get_gravity() * delta
     move_and_slide()
+
+
+func _process_climbing_physics(
+    joystick_direction: Vector2i, delta: float
+) -> void:
+    if abs(joystick_direction.x) > abs(joystick_direction.y):
+        if climb_exit_dir == joystick_direction.x:
+            climb_exit_timer += delta
+        else:
+            climb_exit_dir = joystick_direction.x
+            climb_exit_timer = delta
+
+        if climb_exit_timer > LADDER_JUMP_OFF_TIME:
+            is_climbing = false
+            climb_exit_timer = 0.0
+            climb_exit_dir = 0
+            climb_cooldown = 0.2
+            ladder_gravity_cooldown = LADDER_GRAVITY_COOLDOWN
+            set_target(joystick_direction.x)
+            move_and_slide()
+            return
+        velocity = Vector2.ZERO
+        play("idle")
+        move_and_slide()
+        return
+
+    climb_exit_timer = 0.0
+    climb_exit_dir = 0
+
+    velocity.y = joystick_direction.y * _get_speed()
+    if velocity.y != 0:
+        play("walk")
+    else:
+        play("idle")
+
+    move_and_slide()
+
+
+func enter_ladder(ladder: Node2D) -> void:
+    if not overlapping_ladders.has(ladder):
+        overlapping_ladders.append(ladder)
+
+
+func exit_ladder(ladder: Node2D) -> void:
+    overlapping_ladders.erase(ladder)
+    if overlapping_ladders.is_empty() and is_climbing:
+        is_climbing = false
+        climb_exit_timer = 0.0
+        climb_exit_dir = 0
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -75,10 +163,7 @@ func set_target(dir):
     else:
         play("idle")
 
-    var current_speed = SPEED
-    if mouth_item and mouth_item.get("type") == Eatable.ROCK:
-        current_speed = SPEED * ROCK_SPEED_FACTOR
-    velocity.x = dir * current_speed
+    velocity.x = dir * _get_speed()
 
     if dir != 0:
         # If walking into a wall, jump
@@ -167,3 +252,20 @@ func _on_area_entered(_area: Area2D) -> void:
 
 func _on_body_entered(_body: Node2D) -> void:
     died.emit()
+
+
+func _get_speed() -> float:
+    if mouth_item and mouth_item.get("type") == Eatable.ROCK:
+        return SPEED * ROCK_SPEED_FACTOR
+    return SPEED
+
+
+func _get_joystick_dir() -> Vector2i:
+    var left_pressed = Input.is_action_pressed("Left") or joystick.x < -5
+    var right_pressed = Input.is_action_pressed("Right") or joystick.x > 5
+    var up_pressed = Input.is_action_pressed("Up") or joystick.y < -5
+    var down_pressed = Input.is_action_pressed("Down") or joystick.y > 5
+    return Vector2(
+        -1 if left_pressed else 1 if right_pressed else 0,
+        -1 if up_pressed else 1 if down_pressed else 0,
+    )

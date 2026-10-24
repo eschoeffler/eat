@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dhlgx4u7ygk72" path="res://eatables/light.tscn" id="7_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="7_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
+[ext_resource type="PackedScene" uid="uid://c0m2b851cbw24" path="res://obstacles/ladder.tscn" id="10_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://cexfwhchjlmpt" path="res://eatables/pipe.tscn" id="11_2ku1j"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="11_u3awl"]
 
@@ -415,7 +416,7 @@ position = Vector2(-184, 56)
 position = Vector2(-176, 24)
 
 [node name="Character" parent="." unique_id=1542657402 instance=ExtResource("9_14jow")]
-position = Vector2(136, -8)
+position = Vector2(-152, -104)
 
 [node name="Goal" parent="." unique_id=34909786 instance=ExtResource("11_u3awl")]
 position = Vector2(176, -8)
@@ -439,6 +440,18 @@ frequency = 1
 position = Vector2(24, -72)
 delay = 1.5
 frequency = 1
+
+[node name="Ladder3" parent="." unique_id=1489201948 instance=ExtResource("10_d3jkd")]
+position = Vector2(-120, -48)
+size = Vector2(16, 65)
+
+[node name="Ladder2" parent="." unique_id=2099339450 instance=ExtResource("10_d3jkd")]
+position = Vector2(-120, 48)
+size = Vector2(16, 64)
+
+[node name="Ladder" parent="." unique_id=239760094 instance=ExtResource("10_d3jkd")]
+position = Vector2(-168, 0)
+size = Vector2(16, 64)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]

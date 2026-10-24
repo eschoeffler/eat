@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cr54f8d0uh334"]
 
 [ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_76toy"]
-[ext_resource type="Texture2D" uid="uid://cb1sopbmri5e" path="res://images/unbreakable_tiles.png" id="2_8g4ke"]
+[ext_resource type="Texture2D" uid="uid://iwfna7tnaaxi" path="res://images/unbreakable_tiles.png" id="2_8g4ke"]
 [ext_resource type="PackedScene" uid="uid://cm2bbr51cbw24" path="res://ui/ui.tscn" id="5_yqkch"]
 [ext_resource type="PackedScene" uid="uid://b5ay02y4bw5ej" path="res://obstacles/button.tscn" id="6_6ep0u"]
 [ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="7_g8vcy"]
