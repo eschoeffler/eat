@@ -5,7 +5,7 @@ signal died
 const DIST = 16
 const SPEED = 64
 const JUMP = -250
-const ROCK_SPEED_FACTOR = 0.5
+const ROCK_SPEED_FACTOR = 1.5
 # The amount of time the joystick must move in a horizontal
 # direction before jumping off a ladder.
 const LADDER_JUMP_OFF_TIME = 0.1
@@ -47,10 +47,7 @@ func _physics_process(delta: float) -> void:
     if ladder_gravity_cooldown > 0.0:
         ladder_gravity_cooldown -= delta
 
-    if (
-        not is_climbing
-        and not overlapping_ladders.is_empty()
-    ):
+    if not is_climbing and not overlapping_ladders.is_empty():
         if abs(joystick_direction.y) > abs(joystick_direction.x):
             if climb_cooldown < CLIMB_DELAY:
                 climb_cooldown += delta
@@ -65,7 +62,7 @@ func _physics_process(delta: float) -> void:
             climb_cooldown = 0
     else:
         climb_cooldown = 0
-    
+
     if is_climbing:
         _process_climbing_physics(joystick_direction, delta)
     else:
@@ -135,7 +132,7 @@ func _unhandled_input(event: InputEvent) -> void:
         jump()
     if event.is_action_pressed("Eat") and not event.is_echo():
         eat()
-    
+
     if event is InputEventScreenTouch:
         if event.pressed:
             # Only start a new joystick track if we aren't already tracking a finger
@@ -263,6 +260,7 @@ func _get_speed() -> float:
         return SPEED * ROCK_SPEED_FACTOR
     return SPEED
 
+
 func _get_joystick_dir() -> Vector2i:
     var combined_joystick = joystick
     if Input.is_action_pressed("Left"):
@@ -273,7 +271,7 @@ func _get_joystick_dir() -> Vector2i:
         combined_joystick = Vector2i(0, -5)
     elif Input.is_action_pressed("Down"):
         combined_joystick = Vector2i(0, 5)
-        
+
     var horiz = combined_joystick.x
     var vert = combined_joystick.y
     var use_horiz = abs(horiz) >= abs(vert)

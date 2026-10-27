@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="10_24ks5"]
 [ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="11_56gwk"]
 [ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="12_ve5ok"]
+[ext_resource type="PackedScene" uid="uid://ckg45jultjg7b" path="res://eatables/vanity.tscn" id="13_56gwk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_8g4ke")
@@ -418,7 +419,7 @@ position = Vector2(-168, -40)
 position = Vector2(-160, -80)
 
 [node name="Bed" parent="." unique_id=104939800 instance=ExtResource("7_g8vcy")]
-position = Vector2(56, 40)
+position = Vector2(104, 40)
 
 [node name="Wall" parent="." unique_id=1312429050 instance=ExtResource("8_hrcei")]
 position = Vector2(-120, -40)
@@ -451,6 +452,9 @@ texture = ExtResource("12_ve5ok")
 [node name="Bush2" type="Sprite2D" parent="Parallax2D" unique_id=489470352]
 position = Vector2(-72, 0)
 texture = ExtResource("12_ve5ok")
+
+[node name="Vanity" parent="." unique_id=1855446690 instance=ExtResource("13_56gwk")]
+position = Vector2(136, 32)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]

@@ -4,7 +4,7 @@ class_name Pipe extends Eatable
 @export var delay = 0.1
 
 # The frequency in s that the pipe will drip.
-@export var frequency = 2
+@export var frequency = 2.0
 
 var water_scene = preload("res://obstacles/water.tscn")
 @onready var timer: Timer = $Timer

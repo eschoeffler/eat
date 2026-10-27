@@ -38,6 +38,16 @@ offset_bottom = 27.0
 text = "2
 "
 
+[node name="Button0" type="Button" parent="UI/Control" unique_id=1520762254]
+layout_mode = 0
+offset_left = 64.0
+offset_top = -44.0
+offset_right = 96.0
+offset_bottom = -13.0
+text = "0
+
+"
+
 [node name="Button3" type="Button" parent="UI/Control" unique_id=962491093]
 layout_mode = 0
 offset_left = 128.0
@@ -50,4 +60,5 @@ text = "3
 
 [connection signal="pressed" from="UI/Control/Button1" to="." method="_on_button_pressed" binds= [1]]
 [connection signal="pressed" from="UI/Control/Button2" to="." method="_on_button_pressed" binds= [2]]
+[connection signal="pressed" from="UI/Control/Button0" to="." method="_on_button_pressed" binds= [0]]
 [connection signal="pressed" from="UI/Control/Button3" to="." method="_on_button_pressed" binds= [3]]
