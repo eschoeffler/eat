@@ -97,7 +97,6 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 23,
-"current": true,
 "line": 13,
 "path": "res://character.gd",
 "type": "file"
@@ -113,6 +112,7 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 44,
+"current": true,
 "line": 5,
 "path": "res://rewards/goal.gd",
 "type": "file"

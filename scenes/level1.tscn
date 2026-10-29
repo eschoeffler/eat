@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d0eaj5qq0vpg6"]
 
-[ext_resource type="Texture2D" uid="uid://iwfna7tnaaxi" path="res://images/unbreakable_tiles.png" id="1_conm7"]
+[ext_resource type="Texture2D" uid="uid://cb1sopbmri5e" path="res://images/unbreakable_tiles.png" id="1_conm7"]
 [ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://cm2bbr51cbw24" path="res://ui/ui.tscn" id="3_conm7"]
 [ext_resource type="PackedScene" uid="uid://c6j0owsw8ik4f" path="res://eatables/pot.tscn" id="7_conm7"]
@@ -9,10 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
 [ext_resource type="PackedScene" uid="uid://c0m2b851cbw24" path="res://obstacles/ladder.tscn" id="10_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://cexfwhchjlmpt" path="res://eatables/pipe.tscn" id="11_2ku1j"]
-[ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="11_f31uk"]
+[ext_resource type="Texture2D" uid="uid://dtc3klbbu64sr" path="res://images/world1/bush1.png" id="11_f31uk"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="11_u3awl"]
-[ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="12_gnai3"]
-[ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="13_i8kv5"]
+[ext_resource type="Texture2D" uid="uid://dt4uqhame6psw" path="res://images/world1/cloud1.png" id="12_gnai3"]
+[ext_resource type="Texture2D" uid="uid://b3e3ofui12xtd" path="res://images/world1/cloud2.png" id="13_i8kv5"]
+[ext_resource type="Texture2D" uid="uid://csqqov5ngkn7t" path="res://images/Saw.png" id="14_i8kv5"]
+[ext_resource type="Texture2D" uid="uid://2gq28j7v7k4i" path="res://images/Blob.png" id="15_i8kv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_conm7")
@@ -400,6 +402,43 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/0 = SubResource("TileSetAtlasSource_h2yge")
 
+[sub_resource type="Animation" id="Animation_gnai3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_i8kv5"]
+length = 0.15
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0024019764, 0.081660435),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dxn3v"]
+_data = {
+&"RESET": SubResource("Animation_gnai3"),
+&"spin": SubResource("Animation_i8kv5")
+}
+
 [node name="Level1" type="Node2D" unique_id=273070885]
 script = ExtResource("1_d3jkd")
 
@@ -427,22 +466,18 @@ position = Vector2(176, -8)
 [node name="Pipe" parent="." unique_id=32671503 instance=ExtResource("11_2ku1j")]
 position = Vector2(-72, -72)
 delay = 0.0
-frequency = 1
 
 [node name="Pipe2" parent="." unique_id=1434718877 instance=ExtResource("11_2ku1j")]
 position = Vector2(-40, -72)
 delay = 0.5
-frequency = 1
 
 [node name="Pipe3" parent="." unique_id=1198673776 instance=ExtResource("11_2ku1j")]
 position = Vector2(-8, -72)
 delay = 1.0
-frequency = 1
 
 [node name="Pipe4" parent="." unique_id=1140625407 instance=ExtResource("11_2ku1j")]
 position = Vector2(24, -72)
 delay = 1.5
-frequency = 1
 
 [node name="Ladder3" parent="." unique_id=1489201948 instance=ExtResource("10_d3jkd")]
 position = Vector2(-120, -48)
@@ -461,7 +496,7 @@ z_index = -2
 scroll_scale = Vector2(1.2, 1.2)
 
 [node name="Bush1" type="Sprite2D" parent="Parallax2D" unique_id=2136040015]
-position = Vector2(-160, 40)
+position = Vector2(-219, 37)
 texture = ExtResource("11_f31uk")
 
 [node name="Bush2" type="Sprite2D" parent="Parallax2D" unique_id=1536361195]
@@ -479,6 +514,19 @@ texture = ExtResource("13_i8kv5")
 [node name="Cloud3" type="Sprite2D" parent="Parallax2D" unique_id=1902855774]
 position = Vector2(-323, 52.5)
 texture = ExtResource("13_i8kv5")
+
+[node name="Saw" type="Sprite2D" parent="." unique_id=1054869860]
+position = Vector2(-88, 31)
+texture = ExtResource("14_i8kv5")
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Saw" unique_id=1789544253]
+libraries/ = SubResource("AnimationLibrary_dxn3v")
+autoplay = &"spin"
+
+[node name="Blob" type="Sprite2D" parent="." unique_id=1725717825]
+position = Vector2(-54, 31)
+texture = ExtResource("15_i8kv5")
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]
