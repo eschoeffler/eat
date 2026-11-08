@@ -5,7 +5,8 @@ signal died
 const DIST = 16
 const SPEED = 64
 const JUMP = -130
-const BUBBLE_GRAVITY_SCALE = 0.2
+const BALLOON_GRAVITY_SCALE = 0.2
+const AIR_JUMP_SCALE = 0.5
 
 const ROCK_SPEED_FACTOR = 1.5
 # The amount of time the joystick must move in a horizontal
@@ -18,7 +19,6 @@ const CLIMB_DELAY = 0.1
 # before gravity starts kicking in again.
 const LADDER_GRAVITY_COOLDOWN = 0.1
 
-var gravity_scale = 1
 var target_x = 0
 var moving = true
 var drag_pos = Vector2(0, 0)
@@ -33,6 +33,7 @@ var climb_exit_timer: float = 0.0
 var climb_exit_dir: int = 0
 var climb_cooldown: float = 0.0
 var ladder_gravity_cooldown: float = 0.0
+var has_air_jumped: bool = false
 
 @onready var ray_cast = $RayCast2D
 @onready var animation_player = $AnimationPlayer
@@ -78,16 +79,15 @@ func _process_normal_physics(joystick_direction: Vector2, delta: float) -> void:
     if not is_on_floor():
         play("jump")
     if ladder_gravity_cooldown <= 0.0:
-        velocity += get_gravity() * gravity_scale * delta
+        velocity += get_gravity() * _get_gravity_scale() * delta
     move_and_slide()
     if is_on_floor():
-        gravity_scale = 1
+        has_air_jumped = false
 
 
 func _process_climbing_physics(
     joystick_direction: Vector2i, delta: float
 ) -> void:
-    gravity_scale = 1
     if abs(joystick_direction.x) > abs(joystick_direction.y):
         if climb_exit_dir == joystick_direction.x:
             climb_exit_timer += delta
@@ -137,6 +137,9 @@ func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("Jump") and not event.is_echo():
         if is_on_floor():
             jump()
+        elif not has_air_jumped:
+            has_air_jumped = true
+            jump(AIR_JUMP_SCALE)
     if event.is_action_pressed("Eat") and not event.is_echo():
         eat()
 
@@ -181,16 +184,11 @@ func set_target(dir):
             jump()
 
 
-func jump(force: bool = true) -> void:
-    if force or is_on_floor():
-        is_climbing = false
-        ladder_gravity_cooldown = LADDER_GRAVITY_COOLDOWN
-        velocity.y = JUMP
-        play("jump")
-
-
-func on_bubble_intersect(_bubble: Area2D = null) -> void:
-    jump(true)
+func jump(jump_scale: float = 1.0) -> void:
+    is_climbing = false
+    ladder_gravity_cooldown = LADDER_GRAVITY_COOLDOWN
+    velocity.y = JUMP * jump_scale
+    play("jump")
 
 
 func eat() -> void:
@@ -263,8 +261,8 @@ func _on_animation_finished(anim_name: StringName) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
     if area.has_method("pop_bubble"):
-        gravity_scale = BUBBLE_GRAVITY_SCALE
-        jump(true)
+        has_air_jumped = false
+        jump()
         area.pop_bubble()
         return
     died.emit()
@@ -278,6 +276,12 @@ func _get_speed() -> float:
     if mouth_item and mouth_item.get("type") == Eatable.ROCK:
         return SPEED * ROCK_SPEED_FACTOR
     return SPEED
+
+
+func _get_gravity_scale() -> float:
+    if mouth_item and mouth_item.get("type") == Eatable.BALLOON:
+        return BALLOON_GRAVITY_SCALE
+    return 1.0
 
 
 func _get_joystick_dir() -> Vector2i:

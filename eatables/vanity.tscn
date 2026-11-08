@@ -4,10 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://c2msemvvfrc55" path="res://images/random.png" id="2_random"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_68h2w"]
-size = Vector2(17, 31)
+size = Vector2(17, 14)
 
 [node name="Vanity" type="CharacterBody2D" unique_id=104939800]
 collision_layer = 3
+collision_mask = 0
 script = ExtResource("1_rock")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=162110916]
@@ -18,5 +19,5 @@ vframes = 5
 frame = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1593067356]
-position = Vector2(0.5, 0.5)
+position = Vector2(0.5, 9)
 shape = SubResource("RectangleShape2D_68h2w")

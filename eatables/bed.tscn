@@ -8,6 +8,7 @@ size = Vector2(23, 11)
 
 [node name="Bed" type="CharacterBody2D" unique_id=104939800]
 collision_layer = 3
+collision_mask = 0
 script = ExtResource("1_1jso1")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=162110916]

@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dt4uqhame6psw" path="res://images/world1/cloud1.png" id="8_j8vkp"]
 [ext_resource type="Texture2D" uid="uid://dtc3klbbu64sr" path="res://images/world1/bush1.png" id="9_oykdx"]
 [ext_resource type="PackedScene" uid="uid://cfc1dwtfjfgi5" path="res://bubble.tscn" id="10_0wxwt"]
+[ext_resource type="PackedScene" path="res://eatables/balloon.tscn" id="11_balln"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_g1xgd")
@@ -491,6 +492,9 @@ position = Vector2(-56, 124)
 
 [node name="Bubble8" parent="." unique_id=985211036 instance=ExtResource("10_0wxwt")]
 position = Vector2(-142, 122)
+
+[node name="Balloon" parent="." instance=ExtResource("11_balln")]
+position = Vector2(-48, 392)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]

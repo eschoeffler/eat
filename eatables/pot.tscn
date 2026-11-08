@@ -8,6 +8,7 @@ size = Vector2(16, 16)
 
 [node name="Pot" type="CharacterBody2D" unique_id=104939800]
 collision_layer = 3
+collision_mask = 0
 script = ExtResource("1_ghvs3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=162110916]
