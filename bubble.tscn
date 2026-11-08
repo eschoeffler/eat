@@ -1,7 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cfc1dwtfjfgi5"]
 
-[ext_resource type="Script" path="res://bubble.gd" id="1_bubble"]
+[ext_resource type="Script" uid="uid://djecdxg86bqtt" path="res://bubble.gd" id="1_bubble"]
 [ext_resource type="Texture2D" uid="uid://bvfbqudvodlac" path="res://images/Bubble.png" id="2_bubble_tex"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bubble"]
+radius = 12.0
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -89,20 +92,17 @@ _data = {
 &"pop": SubResource("Animation_pop")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bubble"]
-radius = 12.0
-
-[node name="Bubble" type="Area2D"]
-collision_layer = 4
+[node name="Bubble" type="Area2D" unique_id=985211036]
+collision_layer = 6
 collision_mask = 0
 script = ExtResource("1_bubble")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1983209687]
 texture = ExtResource("2_bubble_tex")
 hframes = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=725131773]
 shape = SubResource("CircleShape2D_bubble")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1485137341]
 libraries/ = SubResource("AnimationLibrary_bubble")

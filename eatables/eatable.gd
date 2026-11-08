@@ -1,10 +1,11 @@
 class_name Eatable extends CharacterBody2D
 
-enum Type { NOTHING, ROCK, WATER }
+enum Type { NOTHING, ROCK, WATER, BUBBLE }
 
 const NOTHING = Type.NOTHING
 const ROCK = Type.ROCK
 const WATER = Type.WATER
+const BUBBLE = Type.BUBBLE
 
 var type = Eatable.ROCK
 

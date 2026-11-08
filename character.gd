@@ -4,7 +4,9 @@ signal died
 
 const DIST = 16
 const SPEED = 64
-const JUMP = -250
+const JUMP = -130
+const BUBBLE_GRAVITY_SCALE = 0.2
+
 const ROCK_SPEED_FACTOR = 1.5
 # The amount of time the joystick must move in a horizontal
 # direction before jumping off a ladder.
@@ -16,6 +18,7 @@ const CLIMB_DELAY = 0.1
 # before gravity starts kicking in again.
 const LADDER_GRAVITY_COOLDOWN = 0.1
 
+var gravity_scale = 1
 var target_x = 0
 var moving = true
 var drag_pos = Vector2(0, 0)
@@ -75,13 +78,16 @@ func _process_normal_physics(joystick_direction: Vector2, delta: float) -> void:
     if not is_on_floor():
         play("jump")
     if ladder_gravity_cooldown <= 0.0:
-        velocity += get_gravity() * delta
+        velocity += get_gravity() * gravity_scale * delta
     move_and_slide()
+    if is_on_floor():
+        gravity_scale = 1
 
 
 func _process_climbing_physics(
     joystick_direction: Vector2i, delta: float
 ) -> void:
+    gravity_scale = 1
     if abs(joystick_direction.x) > abs(joystick_direction.y):
         if climb_exit_dir == joystick_direction.x:
             climb_exit_timer += delta
@@ -257,6 +263,7 @@ func _on_animation_finished(anim_name: StringName) -> void:
 
 func _on_area_entered(area: Area2D) -> void:
     if area.has_method("pop_bubble"):
+        gravity_scale = BUBBLE_GRAVITY_SCALE
         jump(true)
         area.pop_bubble()
         return
@@ -264,10 +271,6 @@ func _on_area_entered(area: Area2D) -> void:
 
 
 func _on_body_entered(body: Node2D) -> void:
-    if body.has_method("pop_bubble"):
-        jump(true)
-        body.pop_bubble()
-        return
     died.emit()
 
 

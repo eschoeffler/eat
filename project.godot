@@ -96,8 +96,8 @@ project/editorState=[{
 "path": "res://obstacles/wall.gd",
 "type": "file"
 }, {
-"column": 0,
-"line": 13,
+"column": 50,
+"line": 277,
 "path": "res://character.gd",
 "type": "file"
 }, {
@@ -112,9 +112,24 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 0,
-"current": true,
 "line": 5,
 "path": "res://rewards/goal.gd",
+"type": "file"
+}, {
+"column": 0,
+"line": 0,
+"path": "res://scenes/menu.gd",
+"type": "file"
+}, {
+"column": 65,
+"current": true,
+"line": 2,
+"path": "res://bubble.gd",
+"type": "file"
+}, {
+"column": 11,
+"line": 7,
+"path": "res://eatables/eatable.gd",
 "type": "file"
 }]
 project/shaderEditorState=[]
