@@ -129,7 +129,8 @@ func exit_ladder(ladder: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("Jump") and not event.is_echo():
-        jump()
+        if is_on_floor():
+            jump()
     if event.is_action_pressed("Eat") and not event.is_echo():
         eat()
 
@@ -174,9 +175,16 @@ func set_target(dir):
             jump()
 
 
-func jump() -> void:
-    if is_on_floor():
-        velocity.y += JUMP
+func jump(force: bool = true) -> void:
+    if force or is_on_floor():
+        is_climbing = false
+        ladder_gravity_cooldown = LADDER_GRAVITY_COOLDOWN
+        velocity.y = JUMP
+        play("jump")
+
+
+func on_bubble_intersect(_bubble: Area2D = null) -> void:
+    jump(true)
 
 
 func eat() -> void:
@@ -247,11 +255,19 @@ func _on_animation_finished(anim_name: StringName) -> void:
         play("idle")
 
 
-func _on_area_entered(_area: Area2D) -> void:
+func _on_area_entered(area: Area2D) -> void:
+    if area.has_method("pop_bubble"):
+        jump(true)
+        area.pop_bubble()
+        return
     died.emit()
 
 
-func _on_body_entered(_body: Node2D) -> void:
+func _on_body_entered(body: Node2D) -> void:
+    if body.has_method("pop_bubble"):
+        jump(true)
+        body.pop_bubble()
+        return
     died.emit()
 
 
