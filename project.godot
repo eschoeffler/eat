@@ -16,8 +16,8 @@ config/features=PackedStringArray("4.7", "Mobile")
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=144
+window/size/viewport_width=144
+window/size/viewport_height=256
 window/size/mode=2
 window/stretch/mode="canvas_items"
 
@@ -96,8 +96,9 @@ project/editorState=[{
 "path": "res://obstacles/wall.gd",
 "type": "file"
 }, {
-"column": 50,
-"line": 277,
+"column": 23,
+"current": true,
+"line": 272,
 "path": "res://character.gd",
 "type": "file"
 }, {
@@ -122,7 +123,6 @@ project/editorState=[{
 "type": "file"
 }, {
 "column": 65,
-"current": true,
 "line": 2,
 "path": "res://bubble.gd",
 "type": "file"

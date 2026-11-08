@@ -1,15 +1,15 @@
 [gd_scene format=4 uid="uid://bw56wxhcgtb2k"]
 
 [ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_jvphm"]
-[ext_resource type="Texture2D" uid="uid://iwfna7tnaaxi" path="res://images/unbreakable_tiles.png" id="2_g1xgd"]
+[ext_resource type="Texture2D" uid="uid://cb1sopbmri5e" path="res://images/unbreakable_tiles.png" id="2_g1xgd"]
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="3_3n7tn"]
 [ext_resource type="PackedScene" uid="uid://bj72xdj5wobgi" path="res://obstacles/spikes.tscn" id="4_8f67t"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="5_2vnbt"]
 [ext_resource type="PackedScene" uid="uid://cm2bbr51cbw24" path="res://ui/ui.tscn" id="6_ekyvo"]
-[ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="7_ivevn"]
-[ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="8_j8vkp"]
-[ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="9_oykdx"]
-[ext_resource type="PackedScene" path="res://bubble.tscn" id="10_0wxwt"]
+[ext_resource type="Texture2D" uid="uid://b3e3ofui12xtd" path="res://images/world1/cloud2.png" id="7_ivevn"]
+[ext_resource type="Texture2D" uid="uid://dt4uqhame6psw" path="res://images/world1/cloud1.png" id="8_j8vkp"]
+[ext_resource type="Texture2D" uid="uid://dtc3klbbu64sr" path="res://images/world1/bush1.png" id="9_oykdx"]
+[ext_resource type="PackedScene" uid="uid://cfc1dwtfjfgi5" path="res://bubble.tscn" id="10_0wxwt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_g1xgd")
@@ -481,13 +481,16 @@ position = Vector2(-216, 280)
 position = Vector2(-128, 280)
 
 [node name="Bubble4" parent="." unique_id=208604900 instance=ExtResource("10_0wxwt")]
-position = Vector2(-56, 216)
+position = Vector2(-56, 235)
 
 [node name="Bubble5" parent="." unique_id=1533389497 instance=ExtResource("10_0wxwt")]
-position = Vector2(8, 152)
+position = Vector2(13, 187)
 
 [node name="Bubble6" parent="." unique_id=1141577426 instance=ExtResource("10_0wxwt")]
-position = Vector2(-96, 112)
+position = Vector2(-56, 124)
+
+[node name="Bubble8" parent="." unique_id=985211036 instance=ExtResource("10_0wxwt")]
+position = Vector2(-142, 122)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]
