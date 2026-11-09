@@ -22,6 +22,8 @@ func _ready() -> void:
     # 2. Wait for the initial delay after the scene loads
     await get_tree().create_timer(delay).timeout
 
+    _drip()
+
     # 3. Start the repeating timer after the delay finishes
     timer.start()
 

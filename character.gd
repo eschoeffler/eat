@@ -5,8 +5,8 @@ signal died
 const DIST = 16
 const SPEED = 64
 const JUMP = -130
-const BALLOON_GRAVITY_SCALE = 0.2
-const AIR_JUMP_SCALE = 0.8
+const BALLOON_GRAVITY_SCALE = 0.3
+const AIR_JUMP_SCALE = 0.7
 
 const ROCK_SPEED_FACTOR = 1.5
 # The amount of time the joystick must move in a horizontal
@@ -137,7 +137,7 @@ func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("Jump") and not event.is_echo():
         if is_on_floor():
             jump()
-        elif not has_air_jumped:
+        elif not has_air_jumped and is_in_mouth(Eatable.BALLOON):
             has_air_jumped = true
             jump(AIR_JUMP_SCALE)
     if event.is_action_pressed("Eat") and not event.is_echo():
@@ -273,15 +273,19 @@ func _on_body_entered(_body: Node2D) -> void:
 
 
 func _get_speed() -> float:
-    if mouth_item and mouth_item.get("type") == Eatable.ROCK:
+    if is_in_mouth(Eatable.ROCK):
         return SPEED * ROCK_SPEED_FACTOR
     return SPEED
 
 
 func _get_gravity_scale() -> float:
-    if mouth_item and mouth_item.get("type") == Eatable.BALLOON:
+    if is_in_mouth(Eatable.BALLOON):
         return BALLOON_GRAVITY_SCALE
     return 1.0
+
+
+func is_in_mouth(type: Eatable.Type) -> bool:
+    return mouth_item and mouth_item.get("type") == type
 
 
 func _get_joystick_dir() -> Vector2i:
