@@ -5,6 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://cuaoq2w7r5sfx" path="res://images/arrow_up.png" id="3_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://b30vpdvfwtx7r" path="res://images/menu.png" id="3_vkava"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_vkava"]
+radius = 17.94
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tf0e0"]
+radius = 17.94
+
 [node name="UI" type="CanvasLayer" unique_id=1879053250]
 
 [node name="Top Right" type="Control" parent="." unique_id=906279862]
@@ -37,9 +43,11 @@ grow_vertical = 0
 position = Vector2(-56, 0)
 scale = Vector2(1.5625, 1.5625004)
 texture_normal = ExtResource("3_tf0e0")
+shape = SubResource("CircleShape2D_vkava")
 action = "Jump"
 
 [node name="EatButton" parent="Bottom Right" unique_id=2105522082 instance=ExtResource("1_wl5ax")]
 scale = Vector2(1.5625, 1.5625)
 texture_normal = ExtResource("2_vkava")
+shape = SubResource("CircleShape2D_tf0e0")
 action = "Eat"
