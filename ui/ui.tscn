@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cm2bbr51cbw24"]
 
 [ext_resource type="PackedScene" uid="uid://b574y4k0qm65n" path="res://ui/touch_button.tscn" id="1_wl5ax"]
-[ext_resource type="Texture2D" uid="uid://dtvgfl0ttrk3q" path="res://images/eat.png" id="2_vkava"]
-[ext_resource type="Texture2D" uid="uid://r0rgwbe8edqw" path="res://images/arrow_up.png" id="3_tf0e0"]
+[ext_resource type="Texture2D" uid="uid://cy4vsuxgnqud8" path="res://images/eat.png" id="2_vkava"]
+[ext_resource type="Texture2D" uid="uid://cuaoq2w7r5sfx" path="res://images/arrow_up.png" id="3_tf0e0"]
 [ext_resource type="Texture2D" uid="uid://b30vpdvfwtx7r" path="res://images/menu.png" id="3_vkava"]
 
 [node name="UI" type="CanvasLayer" unique_id=1879053250]
@@ -34,11 +34,12 @@ grow_horizontal = 0
 grow_vertical = 0
 
 [node name="JumpButton" parent="Bottom Right" unique_id=989474449 instance=ExtResource("1_wl5ax")]
-position = Vector2(17, -7)
+position = Vector2(-56, 0)
+scale = Vector2(1.5625, 1.5625004)
 texture_normal = ExtResource("3_tf0e0")
 action = "Jump"
 
 [node name="EatButton" parent="Bottom Right" unique_id=2105522082 instance=ExtResource("1_wl5ax")]
-position = Vector2(17, 17)
+scale = Vector2(1.5625, 1.5625)
 texture_normal = ExtResource("2_vkava")
 action = "Eat"
