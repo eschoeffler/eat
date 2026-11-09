@@ -141,8 +141,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
     if event is InputEventScreenTouch:
         if event.pressed:
-            if not is_on_floor():
-                jump_if_can()
             # Only start a new joystick track if we aren't already tracking a finger
             if joystick_finger_index == -1:
                 joystick_finger_index = event.index
