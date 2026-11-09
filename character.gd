@@ -135,16 +135,14 @@ func exit_ladder(ladder: Node2D) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
     if event.is_action_pressed("Jump") and not event.is_echo():
-        if is_on_floor():
-            jump()
-        elif not has_air_jumped and is_in_mouth(Eatable.BALLOON):
-            has_air_jumped = true
-            jump(AIR_JUMP_SCALE)
+        jump_if_can()
     if event.is_action_pressed("Eat") and not event.is_echo():
         eat()
 
     if event is InputEventScreenTouch:
         if event.pressed:
+            if not is_on_floor():
+                jump_if_can()
             # Only start a new joystick track if we aren't already tracking a finger
             if joystick_finger_index == -1:
                 joystick_finger_index = event.index
@@ -182,6 +180,16 @@ func set_target(dir):
         ray_cast.force_raycast_update()
         if is_on_floor() and is_on_wall() and ray_cast.is_colliding():
             jump()
+
+
+func jump_if_can():
+    if not is_on_floor():
+        if has_air_jumped or not is_in_mouth(Eatable.BALLOON):
+            return
+        has_air_jumped = true
+        jump(AIR_JUMP_SCALE)
+    else:
+        jump(1.0)
 
 
 func jump(jump_scale: float = 1.0) -> void:
