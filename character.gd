@@ -6,7 +6,7 @@ const DIST = 16
 const SPEED = 64
 const JUMP = -130
 const BALLOON_GRAVITY_SCALE = 0.2
-const AIR_JUMP_SCALE = 0.5
+const AIR_JUMP_SCALE = 0.8
 
 const ROCK_SPEED_FACTOR = 1.5
 # The amount of time the joystick must move in a horizontal
