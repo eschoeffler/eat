@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://d0eaj5qq0vpg6"]
 
-[ext_resource type="Texture2D" uid="uid://iwfna7tnaaxi" path="res://images/unbreakable_tiles.png" id="1_conm7"]
+[ext_resource type="Texture2D" uid="uid://cb1sopbmri5e" path="res://images/unbreakable_tiles.png" id="1_conm7"]
 [ext_resource type="Script" uid="uid://dntd5hv6gdghd" path="res://scenes/level.gd" id="1_d3jkd"]
 [ext_resource type="PackedScene" uid="uid://cm2bbr51cbw24" path="res://ui/ui.tscn" id="3_conm7"]
 [ext_resource type="PackedScene" uid="uid://c6j0owsw8ik4f" path="res://eatables/pot.tscn" id="7_conm7"]
@@ -8,12 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://dw72k5mynrjhm" path="res://eatables/bed.tscn" id="7_i8kv5"]
 [ext_resource type="PackedScene" uid="uid://i2l74xjld3vm" path="res://character.tscn" id="9_14jow"]
 [ext_resource type="PackedScene" uid="uid://cexfwhchjlmpt" path="res://eatables/pipe.tscn" id="11_2ku1j"]
-[ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="11_f31uk"]
+[ext_resource type="Texture2D" uid="uid://dtc3klbbu64sr" path="res://images/world1/bush1.png" id="11_f31uk"]
 [ext_resource type="PackedScene" uid="uid://belvs5c6bq6n0" path="res://rewards/goal.tscn" id="11_u3awl"]
-[ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="12_gnai3"]
-[ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="13_i8kv5"]
+[ext_resource type="Texture2D" uid="uid://dt4uqhame6psw" path="res://images/world1/cloud1.png" id="12_gnai3"]
+[ext_resource type="Texture2D" uid="uid://b3e3ofui12xtd" path="res://images/world1/cloud2.png" id="13_i8kv5"]
 [ext_resource type="Texture2D" uid="uid://csqqov5ngkn7t" path="res://images/Saw.png" id="14_i8kv5"]
-[ext_resource type="Texture2D" uid="uid://deoloagn8jh4y" path="res://images/Blob.png" id="15_i8kv5"]
+[ext_resource type="PackedScene" uid="uid://csbjhkdeh1eri" path="res://obstacles/bouncey_ball.tscn" id="15_dxn3v"]
+[ext_resource type="Texture2D" uid="uid://2gq28j7v7k4i" path="res://images/Blob.png" id="15_i8kv5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("1_conm7")
@@ -557,6 +558,9 @@ hframes = 6
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Blob" unique_id=1653984123]
 libraries/ = SubResource("AnimationLibrary_mvsps")
 autoplay = &"spin"
+
+[node name="BounceyBall" parent="." unique_id=1768426855 instance=ExtResource("15_dxn3v")]
+position = Vector2(96, -8)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]

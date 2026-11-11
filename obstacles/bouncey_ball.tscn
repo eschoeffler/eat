@@ -1,10 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://csbjhkdeh1eri"]
 
-[ext_resource type="Script" path="res://obstacles/bouncey_ball.gd" id="1_ball"]
-[ext_resource type="Texture2D" uid="uid://bvfbqudvodlac" path="res://images/Bubble.png" id="2_ball_tex"]
+[ext_resource type="Script" uid="uid://cd1s5t561s053" path="res://obstacles/bouncey_ball.gd" id="1_ball"]
+[ext_resource type="Texture2D" uid="uid://ct4ycxss1pbed" path="res://images/BouncyBall.png" id="2_a0p3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ball"]
-radius = 12.0
+radius = 6.0
 
 [sub_resource type="Animation" id="Animation_reset"]
 length = 0.001
@@ -44,11 +44,47 @@ tracks/2/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:modulate:r")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:self_modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Sprite2D:modulate:h")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
 
 [sub_resource type="Animation" id="Animation_bounce"]
 resource_name = "bounce"
-length = 0.24
-step = 0.08
+length = 0.2500000074505806
+step = 0.083333336
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -56,31 +92,71 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.08, 0.16, 0.24),
+"times": PackedFloat32Array(0.0012044697, 0.08371065, 0.16561459, 0.23968948),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [1, 2, 3, 0]
+"values": [1, 2, 1, 0]
+}
+
+[sub_resource type="Animation" id="Animation_a0p3x"]
+step = 0.083333336
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate:r")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.049297005),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate:a")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.29367238),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.27842712, 0.27842712, 0.27842712, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:modulate:h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.24713866),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.9921417, 0.78038025, 0, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ball"]
 _data = {
 &"RESET": SubResource("Animation_reset"),
 &"bounce": SubResource("Animation_bounce"),
+&"disable": SubResource("Animation_a0p3x"),
 &"pop": SubResource("Animation_bounce")
 }
 
-[node name="BounceyBall" type="Area2D"]
+[node name="BounceyBall" type="Area2D" unique_id=1768426855]
 collision_layer = 6
 collision_mask = 0
 script = ExtResource("1_ball")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_ball_tex")
-hframes = 4
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=289329459]
+texture = ExtResource("2_a0p3x")
+hframes = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1644906128]
+visible = false
 shape = SubResource("CircleShape2D_ball")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1219380526]
 libraries/ = SubResource("AnimationLibrary_ball")
-
