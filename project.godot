@@ -125,7 +125,7 @@ project/editorState=[{
 }, {
 "column": 65,
 "line": 2,
-"path": "res://bubble.gd",
+"path": "res://obstacles/bubble.gd",
 "type": "file"
 }, {
 "column": 11,

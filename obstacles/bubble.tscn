@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfc1dwtfjfgi5"]
 
-[ext_resource type="Script" uid="uid://djecdxg86bqtt" path="res://bubble.gd" id="1_bubble"]
+[ext_resource type="Script" uid="uid://djecdxg86bqtt" path="res://obstacles/bubble.gd" id="1_bubble"]
 [ext_resource type="Texture2D" uid="uid://bvfbqudvodlac" path="res://images/Bubble.png" id="2_bubble_tex"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bubble"]

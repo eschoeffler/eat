@@ -266,6 +266,11 @@ func _on_animation_finished(anim_name: StringName) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
+    if area.has_method("bounce"):
+        has_air_jumped = false
+        jump()
+        area.bounce()
+        return
     if area.has_method("pop_bubble"):
         has_air_jumped = false
         jump()

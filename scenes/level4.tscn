@@ -9,8 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://dk50s52gdh7b4" path="res://images/world1/cloud2.png" id="7_ivevn"]
 [ext_resource type="Texture2D" uid="uid://bbm7utp6u33kx" path="res://images/world1/cloud1.png" id="8_j8vkp"]
 [ext_resource type="Texture2D" uid="uid://b0f3imh1lwrtl" path="res://images/world1/bush1.png" id="9_oykdx"]
-[ext_resource type="PackedScene" uid="uid://cfc1dwtfjfgi5" path="res://bubble.tscn" id="10_0wxwt"]
+[ext_resource type="PackedScene" uid="uid://cfc1dwtfjfgi5" path="res://obstacles/bubble.tscn" id="10_0wxwt"]
 [ext_resource type="PackedScene" uid="uid://drlp56tn8wk1h" path="res://eatables/balloon.tscn" id="11_balln"]
+[ext_resource type="PackedScene" path="res://obstacles/bouncey_ball.tscn" id="12_jvphm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_h2yge"]
 texture = ExtResource("2_g1xgd")
@@ -480,6 +481,9 @@ position = Vector2(-144, 96)
 
 [node name="Balloon" parent="." unique_id=1707878189 instance=ExtResource("11_balln")]
 position = Vector2(-168, 392)
+
+[node name="BounceyBall" parent="." unique_id=2122718231 instance=ExtResource("12_jvphm")]
+position = Vector2(-120, 392)
 
 [connection signal="died" from="Character" to="." method="_on_died"]
 [connection signal="win" from="Goal" to="." method="_on_win"]
