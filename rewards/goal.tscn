@@ -2,6 +2,16 @@
 
 [ext_resource type="Texture2D" uid="uid://c3yobds8eeqok" path="res://images/items.png" id="1_km8i2"]
 [ext_resource type="Script" uid="uid://wrf6y7olt0ov" path="res://rewards/goal.gd" id="1_redsy"]
+[ext_resource type="Script" uid="uid://dt4p8loiqg5aa" path="res://rewards/glow_sprite.gd" id="3_glow_script"]
+
+[sub_resource type="Gradient" id="Gradient_00c1i"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 0.8588104, 0.8470459, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_mbbsf"]
+gradient = SubResource("Gradient_00c1i")
+fill = 1
+fill_from = Vector2(0.5023148, 0.5023148)
+fill_to = Vector2(0.5717593, 0.4375)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_redsy"]
 size = Vector2(10, 10)
@@ -10,6 +20,12 @@ size = Vector2(10, 10)
 collision_layer = 0
 collision_mask = 8
 script = ExtResource("1_redsy")
+
+[node name="GlowSprite" type="Sprite2D" parent="." unique_id=277680639]
+self_modulate = Color(1, 0.75, 0.85, 1)
+scale = Vector2(2.5, 2.5)
+texture = SubResource("GradientTexture2D_mbbsf")
+script = ExtResource("3_glow_script")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2017725547]
 texture = ExtResource("1_km8i2")

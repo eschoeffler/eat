@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="eat"
-run/main_scene="res://scenes/level1.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.7", "Mobile")
 
 [display]
@@ -98,7 +98,7 @@ project/editorState=[{
 "path": "res://obstacles/wall.gd",
 "type": "file"
 }, {
-"column": 9,
+"column": 0,
 "line": 139,
 "path": "res://character.gd",
 "type": "file"
@@ -133,10 +133,15 @@ project/editorState=[{
 "path": "res://ui/touch_button.gd",
 "type": "file"
 }, {
-"column": 27,
-"current": true,
+"column": 0,
 "line": 27,
 "path": "res://obstacles/bouncey_ball.gd",
+"type": "file"
+}, {
+"column": 30,
+"current": true,
+"line": 6,
+"path": "res://rewards/glow_sprite.gd",
 "type": "file"
 }]
 project/shaderEditorState=[]
